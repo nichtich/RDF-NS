@@ -10,7 +10,7 @@ my $dist = do { local( @ARGV, $/ ) = 'dist.ini'; <> }
 $dist =~ /^\s*version\s*=\s*([^\s]+)/m 
 	or die "dist.ini must include version number";
 
-# TODO: check version number format and date
+# TODO: check version number format and date to give a warning
 
 my $file = "share/$1.txt";
 
@@ -24,7 +24,7 @@ my $tmp = File::Temp->new->filename;
 my $url = "http://prefix.cc/popular/all.file.txt";
 my $prefixcc = mirror($url,$tmp) or die "Failed to load $url";
 
-my $ns = RDF::NS->LOAD($tmp,undef,1);
+my $ns = RDF::NS->LOAD( $tmp, warn => 1 );
 
 foreach my $prefix (sort keys %$ns) {
 	print $fh "$prefix\t" . $ns->{$prefix} . "\n";
