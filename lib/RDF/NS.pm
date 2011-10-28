@@ -101,7 +101,7 @@ sub AUTOLOAD {
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20111028';
+  use RDF::NS;
   my $ns = RDF::NS->new('20111028');
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
@@ -114,7 +114,8 @@ sub AUTOLOAD {
   $ns->XMLNS('foaf');      # xmlns:foaf="http://xmlns.com/foaf/0.1/"
 
   # To get RDF::Trine::Node::Resource instead of strings
-  my $ns = RDF::NS->new( '20111028', as => 'trine' );
+  use RDF::NS::Trine;
+  $ns = RDF::NS::Trine->new('20111028');
   $ns->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
 
   # load your own mapping
@@ -125,7 +126,7 @@ sub AUTOLOAD {
   $uri = $ns->SELECT('foo|bar|doz'); # returns first existing namespace
 
   # instances are just blessed hash references
-  $ns->{'foaf'}            # http://xmlns.com/foaf/0.1/
+  $ns->{'foaf'};           # http://xmlns.com/foaf/0.1/
   bless { foaf => 'http://xmlns.com/foaf/0.1/' }, 'RDF::NS';
   print (scalar %$ns) . "prefixes\n";
 
@@ -202,7 +203,7 @@ it just returns C<$uri> unmodified.
 =head1 SEE ALSO
 
 There are several CPAN modules to deal with IRI namespaces, for instance
-L<RDF::Trine::Namespace>, L<RDF::Trine::NamespaceMap<>, L<RDF::Prefixes>,
+L<RDF::Trine::Namespace>, L<RDF::Trine::NamespaceMap>, L<RDF::Prefixes>,
 L<RDF::Simple::NS>, L<RDF::RDFa::Parser::Profile::PrefixCC> etc.
 
 =cut
