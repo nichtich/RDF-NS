@@ -213,6 +213,7 @@ fresnel	http://www.w3.org/2004/09/fresnel#
 frir	http://purl.org/twc/ontology/frir.owl#
 game	http://data.totl.net/game/
 gazetteer	http://data.ordnancesurvey.co.uk/ontology/50kGazetteer/
+gbv	http://purl.org/ontology/gbv/
 gc	http://www.oegov.org/core/owl/gc#
 gd	http://rdf.data-vocabulary.org/#
 gelo	http://krauthammerlab.med.yale.edu/ontologies/gelo#
@@ -453,6 +454,7 @@ psych	http://purl.org/vocab/psychometric-profile/
 pto	http://www.productontology.org/id/
 ptr	http://www.w3.org/2009/pointers#
 puc	http://purl.org/NET/puc#
+puelia	http://kwijibo.talis.com/vocabs/puelia#
 push	http://www.w3.org/2007/uwa/context/push.owl#
 qb	http://purl.org/linked-data/cube#
 qdoslf	http://foaf.qdos.com/lastfm/schema/
@@ -462,6 +464,7 @@ qudt	http://qudt.org/1.1/schema/qudt#
 r2r	http://www4.wiwiss.fu-berlin.de/bizer/r2r/
 rail	http://ontologi.es/rail/vocab#
 rdacarrier	http://rdvocab.info/termList/RDACarrierType/
+rdacontent	http://rdvocab.info/termList/RDAContentType/
 rdamedia	http://rdvocab.info/termList/RDAMediaType/
 rdb	http://www.dbs.cs.uni-duesseldorf.de/RDF/relational#
 rdf	http://www.w3.org/1999/02/22-rdf-syntax-ns#
