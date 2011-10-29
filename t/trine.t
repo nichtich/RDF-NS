@@ -5,6 +5,8 @@ use Test::More;
 eval { require RDF::Trine::Node::Resource; 1; };
 if ( $@ ) {
 	diag("RDF::Trine missing - skip tests of RDF::NS::Trine");
+	ok(1, "skip tests");
+	done_testing;
 	exit 0;
 }
 
