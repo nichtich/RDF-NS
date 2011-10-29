@@ -36,7 +36,7 @@ sub LOAD {
                 warn "Skipping invalid $prefix namespace $namespace";
             }
         } elsif ( $warn ) {
-            warn "Skipping unusual prefix $prefix";
+            warn "Skipping unusual prefix '$prefix'";
         }
     }
 
@@ -67,7 +67,8 @@ sub SELECT {
 sub MAP {
     my $self = shift;
     my $code = shift;
-    my @ns = grep { $self->{$_} } map { split /[|, ]+/ } @_;
+    my @ns = @_ ? (grep { $self->{$_} } map { split /[|, ]+/ } @_) 
+        : keys %$self;
     if (wantarray) {
         return map { $code->() } sort @ns;
     } else {
@@ -160,11 +161,11 @@ options include C<warn> to enable warnings.
 =method URI ( $short )
 
 Expand a prefixed URI, such as C<foaf:Person>. Alternatively you can expand
-prefixed URIs with method calls, such as C<<$ns->foaf_Person>>.
+prefixed URIs with method calls, such as C<$ns-E<gt>foaf_Person>.
 
 =method TTL ( prefix[es] )
 
-Returns a Turtle/Notation3 @prefix definition or a list of such definitions
+Returns a Turtle/Notation3 C<@prefix> definition or a list of such definitions
 in list context. Prefixes can be passed as single arguments or separated by
 commas, vertical bars, and spaces.
 
@@ -187,9 +188,9 @@ can be used to assign to a hash. In scalar context, returns the namespace
 of the first prefix that was found. Prefixes can be passed as single arguments
 or separated by commas, vertical bars, and spaces.
 
-=method MAP ( $code, prefix[es] )
+=method MAP ( $code [, prefix[es] ] )
 
-Internally used to select and map particular prefixes, that can be passed as
+Internally used to map particular or all prefixes. Prefixes can be selected as
 single arguments or separated by commas, vertical bars, and spaces. In scalar
 context, C<$_> is set to the first existing prefix (if found) and C<$code> is
 called. In list context, found prefixes are sorted at mapped with C<$code>.
@@ -202,7 +203,7 @@ it just returns C<$uri> unmodified.
 
 =head1 SEE ALSO
 
-There are several CPAN modules to deal with IRI namespaces, for instance
+There are several other CPAN modules to deal with IRI namespaces, for instance
 L<RDF::Trine::Namespace>, L<RDF::Trine::NamespaceMap>, L<RDF::Prefixes>,
 L<RDF::Simple::NS>, L<RDF::RDFa::Parser::Profile::PrefixCC> etc.
 
