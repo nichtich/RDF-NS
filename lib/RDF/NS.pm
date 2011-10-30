@@ -11,6 +11,7 @@ our $AUTOLOAD;
 sub new {
     my $class   = shift;
     my $version = shift;
+	$version = $RDF::NS::VERSION if $version eq 'any';
     LOAD( $class, File::ShareDir::dist_file('RDF-NS', "$version.txt" ), @_ );
 }
 
@@ -102,8 +103,8 @@ sub AUTOLOAD {
 
 =head1 SYNOPSIS
 
-  use RDF::NS;
-  my $ns = RDF::NS->new('20111028');
+  use RDF::NS '20111028';              # check at compile time
+  my $ns = RDF::NS->new('20111028');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
@@ -150,13 +151,16 @@ to download the current prefix-namespace mappings from L<http://prefix.cc>.
 
 =method new ( $version [, %options ] )
 
-Create a new namespace mapping with a selected version (mandatory).
-See LOAD for supported options.
+Create a new namespace mapping with a selected version (mandatory). The special
+version string C<"any"> can be used to get the newest mapping - actually this
+is C<$RDF::NS::VERSION>, but you should better select a specific version, as
+mappings can change, violating backwards compatibility. Supported options 
+include C<warn> to enable warnings.
 
 =method LOAD ( $file [, %options ] )
 
-Load namespace mappings from a particular tab-separated file. Supported
-options include C<warn> to enable warnings.
+Load namespace mappings from a particular tab-separated file. See NEW for 
+supported options.
 
 =method URI ( $short )
 

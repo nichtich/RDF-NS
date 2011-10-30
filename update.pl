@@ -26,24 +26,39 @@ mirror($url,$tmp) or die "Failed to load $url";
 my $new = RDF::NS->LOAD( $tmp, warn => 1 );
 
 open (my $txt, ">", "share/$new_version.txt") 
-	or die "failed to open share/$new_version.txt";
+    or die "failed to open share/$new_version.txt";
 print $txt join( "", $new->MAP( sub { "$_\t".$new->{$_}."\n" } ) );
 
-print "$new_version (" . scalar(keys %$new) . " prefixes)\n"; 
+my (@log) = "$new_version (" . scalar(keys %$new) . " prefixes)"; 
 
 # diff
 my @changed;
 foreach (keys %$new) {
     if (exists $cur->{$_}) {
-		push (@changed,$_) if $cur->{$_} ne $new->{$_};
-	    delete $cur->{$_};
-    	delete $new->{$_};
-	} 
+        push (@changed,$_) if $cur->{$_} ne $new->{$_};
+        delete $cur->{$_};
+        delete $new->{$_};
+    } 
 }
 
-print "  added: " . join(",",sort keys %$new) . "\n" if %$new;
-print "  removed: " . join(",",sort keys %$cur) . "\n" if %$cur;
-print "  changed: " . join(",",sort @changed) . "\n" if @changed;
+push @log, "  added: " . join(",",sort keys %$new) if %$new;
+push @log, "  removed: " . join(",",sort keys %$cur) if %$cur;
+push @log, "  changed: " . join(",",sort @changed) if @changed;
 
-# TODO: We could write new dist.ini and Changes and even push to CPAN
+print join '', map { "$_\n" } @log;
+
+if (@ARGV and @ARGV eq '-m') {
+    foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm)) {
+        print "$cur_version => $new_version in $file\n";
+        local ($^I,@ARGV)=('.bak',$file);
+        while(<>) {
+            s/$cur_version/$new_version/ig;
+            print;
+        }
+    }
+    # TODO: modify 'Changes'
+	# print join '' map { "$_\n" }, @log;
+    # $ git commit -m "update to $new_version"
+    # $ dzil release
+}
 
