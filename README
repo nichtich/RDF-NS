@@ -16,14 +16,14 @@ for easy reuse without having to download them in every application.
 
 In short, you can get a full prefix-to-namespace mapping as blessed hash with
 
-    RDF::NS->new('20111028')
+    RDF::NS->new('20111031')
 
 The only argument to the constructor is the version number, that is equivalent
 to the date of a particular snapshot. The changelog in the file Changes lists
 all snapshots with their modifications. RDF::NS provides some handy methods,
 for instance you can use method-calls to create full URIs:
 
-    $ns = RDF::NS->new('20111028');
+    $ns = RDF::NS->new('20111031');
 
     $ns->rdf_type; # returns "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
 

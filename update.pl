@@ -66,6 +66,7 @@ do {
         print; 
     } 
 }
+# $ git add Changes README dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm share/$new_version.txt
 # $ git commit -m "update to $new_version"
 # $ git tag $new_version
 # $ dzil release
