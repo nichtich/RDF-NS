@@ -47,18 +47,26 @@ push @log, "  changed: " . join(",",sort @changed) if @changed;
 
 print join '', map { "$_\n" } @log;
 
-if (@ARGV and @ARGV eq '-m') {
-    foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm)) {
-        print "$cur_version => $new_version in $file\n";
-        local ($^I,@ARGV)=('.bak',$file);
-        while(<>) {
-            s/$cur_version/$new_version/ig;
-            print;
-        }
+foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm README)) {
+    print "$cur_version => $new_version in $file\n";
+    local ($^I,@ARGV)=('.bak',$file);
+    while(<>) {
+        s/$cur_version/$new_version/ig;
+        print;
     }
-    # TODO: modify 'Changes'
-	# print join '' map { "$_\n" }, @log;
-    # $ git commit -m "update to $new_version"
-    # $ dzil release
 }
+do {
+    print "prepend modifications to Changes\n"; 
+    local ($^I,@ARGV)=('.bak','Changes');
+    my $line=0;
+    while (<>) {
+        if (!$line++) {
+            print join '', map { "$_\n" } @log;
+        }
+        print; 
+    } 
+}
+# $ git commit -m "update to $new_version"
+# $ git tag $new_version
+# $ dzil release
 

@@ -1,0 +1,35 @@
+Working with RDF data is cumbersome, unless you define namespaces and prefixes
+for abbreviation. Defining namespaces, however, is also cumbersome because you
+need to repeat this step in every environment. This is silly because in most
+cases we use the same URI namespaces anyway. Some popular examples:
+
+    @prefix owl: <http://www.w3.org/2002/07/owl#> .            Turtle/N3 syntax
+
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>     SPARQL syntax
+
+    xlmns:rdf="http://xmlns.com/foaf/0.1/"                       RDF/XML syntax
+
+Fortunately there is http://prefix.cc, a registry where people can vote the most
+popular URI namespaces. It is best practice to use the same prefixes as defined
+there. The Perl module RDF::NS contains regular snapshots from http://prefix.cc
+for easy reuse without having to download them in every application.
+
+In short, you can get a full prefix-to-namespace mapping as blessed hash with
+
+    RDF::NS->new('20111028')
+
+The only argument to the constructor is the version number, that is equivalent
+to the date of a particular snapshot. The changelog in the file Changes lists
+all snapshots with their modifications. RDF::NS provides some handy methods,
+for instance you can use method-calls to create full URIs:
+
+    $ns = RDF::NS->new('20111028');
+
+    $ns->rdf_type; # returns "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+
+The subclass RDF::NS::Trine, shipped with RDF::NS returns blessed URI objects
+instead of plain strings, as expected by RDF::Trine. Please have a look at the
+documentation for more information.
+
+The source code of RDF::NS is available at https://github.com/nichtich/RDF-NS/
+with releases at http://search.cpan.org/dist/RDF-NS/.
