@@ -3,11 +3,11 @@ for abbreviation. Defining namespaces, however, is also cumbersome because you
 need to repeat this step in every environment. This is silly because in most
 cases we use the same URI namespaces anyway. Some popular examples:
 
-    @prefix owl: <http://www.w3.org/2002/07/owl#> .            Turtle/N3 syntax
+    @prefix owl: <http://www.w3.org/2002/07/owl#> .   (Turtle/N3)
 
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>     SPARQL syntax
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>   (SPARQL)
 
-    xlmns:rdf="http://xmlns.com/foaf/0.1/"                       RDF/XML syntax
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"   (RDF/XML)
 
 Fortunately there is http://prefix.cc, a registry where people can vote the most
 popular URI namespaces. It is best practice to use the same prefixes as defined
@@ -22,8 +22,6 @@ The only argument to the constructor is the version number, that is equivalent
 to the date of a particular snapshot. The changelog in the file Changes lists
 all snapshots with their modifications. RDF::NS provides some handy methods,
 for instance you can use method-calls to create full URIs:
-
-    $ns = RDF::NS->new('20111031');
 
     $ns->rdf_type; # returns "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
 
