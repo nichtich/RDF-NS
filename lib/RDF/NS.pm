@@ -10,7 +10,7 @@ our $AUTOLOAD;
 
 sub new {
     my $class   = shift;
-    my $version = shift;
+    my $version = shift || 'undef';
 	$version = $RDF::NS::VERSION if $version eq 'any';
     LOAD( $class, File::ShareDir::dist_file('RDF-NS', "$version.txt" ), @_ );
 }
@@ -44,6 +44,16 @@ sub LOAD {
     bless $ns, $class;
 }
 
+sub FORMAT {
+    my $self = shift;
+	my $format = shift;
+    $format = 'TTL' if $format =~ /^n(otation)?3$/i;
+    if ($format =~ /^(ttl|n3|sparql|txt)$/i) {
+	    $format = uc($format);
+	    $self->$format( @_ );
+	}
+}
+
 sub TTL {
     my $self = shift;
     $self->MAP( sub { "\@prefix $_: <".$self->{$_}."> ." } , @_ );
@@ -58,6 +68,12 @@ sub XMLNS {
     my $self = shift;
     $self->MAP( sub { "xmlns:$_=\"".$self->{$_}."\"" } , @_ );
 }
+
+sub TXT {
+    my $self = shift;
+    $self->MAP( sub { "$_\t".$self->{$_} } , @_ );
+}
+
 
 sub SELECT {
     my $self = shift;
