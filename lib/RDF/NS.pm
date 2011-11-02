@@ -5,6 +5,7 @@ package RDF::NS;
 
 use Scalar::Util qw(blessed);
 use File::ShareDir;
+use 5.10.0;
 
 our $AUTOLOAD;
 
@@ -84,8 +85,9 @@ sub GET {
 
 sub URI {
     my $self = shift;
-    return unless shift =~ /^([a-z][a-z0-9]+)([:_]([^:]+))?$/;
-    my $ns = $self->{$1} or return;
+    return unless shift =~ /^([a-z][a-z0-9]+)?([:_]([^:]+))?$/;
+    my $ns = $self->{$1 // ''};
+    return unless defined $ns;
     return $self->GET($ns) unless $3;
     return $self->GET($ns.$3);
 }
@@ -94,7 +96,7 @@ sub AUTOLOAD {
     my $self = shift;
     return unless $AUTOLOAD =~ /:([a-z][a-z0-9]+)(_([^:]+))?$/;
     my $ns = $self->{$1} or return;
-    my $local = defined $3 ? $3 : shift;
+    my $local = $3 // shift;
     return $self->GET($ns) unless defined $local;
     return $self->GET($ns.$local);
 }
