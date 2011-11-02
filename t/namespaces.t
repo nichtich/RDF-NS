@@ -52,4 +52,7 @@ is( $first, $rdf, 'SELECT (scalar)' );
 $ns->{''} = "http://example.org/";
 is( $ns->URI(":foo"), "http://example.org/foo", "empty prefix allowed" );
 
+$ns = bless( { 'x' => 'http://example.org/' }, 'RDF::NS');
+is( $ns->x_alice, "http://example.org/alice", "blessed alone, one-letter prefix" );
+
 done_testing;
