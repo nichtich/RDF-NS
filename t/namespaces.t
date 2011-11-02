@@ -24,8 +24,8 @@ is( $ns->URI("rdf_type"), $rdf.'type', '$ns->URI("rdf_type")' );
 is( $ns->SPARQL('rdf'), "PREFIX rdf: <$rdf>", 'SPARQL("rdf")' );
 is( $ns->TTL('rdfs'), "\@prefix rdfs: <$rdfs> .", 'TTL("rdfs")' );
 # order is relevant
-is( $ns->XMLNS('rdfs,rdf'), "xmlns:rdfs=\"$rdfs\"" );
-is( $ns->XMLNS('rdf,rdfs'), "xmlns:rdf=\"$rdf\"" );
+is( $ns->XMLNS('rdfs,rdf'), "xmlns:rdfs=\"$rdfs\"", 'order ok' );
+is( $ns->XMLNS('rdf,rdfs'), "xmlns:rdf=\"$rdf\"", 'order ok' );
 
 my $sparql = ["PREFIX rdf: <$rdf>","PREFIX rdfs: <$rdfs>"];
 my $turtle = ["\@prefix rdf: <$rdf> .","\@prefix rdfs: <$rdfs> ."];
@@ -47,5 +47,12 @@ is_deeply( \%s, { rdfs => $rdfs, rdf => $rdf }, 'SELECT (list)' );
 
 my $first = $ns->SELECT('xxxxx,,rdf');
 is( $first, $rdf, 'SELECT (scalar)' );
+
+# edge case
+$ns->{''} = "http://example.org/";
+is( $ns->URI(":foo"), "http://example.org/foo", "empty prefix allowed" );
+
+$ns = bless( { 'x' => 'http://example.org/' }, 'RDF::NS');
+is( $ns->x_alice, "http://example.org/alice", "blessed alone, one-letter prefix" );
 
 done_testing;
