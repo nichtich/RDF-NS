@@ -17,7 +17,7 @@ sub GET {
 
   use RDF::NS::Trine;
 
-  my $ns = RDF::NS::Trine->new('20111102');
+  my $ns = RDF::NS::Trine->new('20111124');
 
   $ns->foaf_Person;        # a RDF::Trine::Node::Resource
   $ns->URI('foaf:Person);  # same

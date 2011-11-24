@@ -7,6 +7,7 @@ use Scalar::Util qw(blessed);
 use File::ShareDir;
 
 our $AUTOLOAD;
+our $FORMATS = qr/ttl|n(otation)?3|sparql|xmlns|txt|beacon/;
 
 sub new {
     my $class   = shift;
@@ -46,9 +47,9 @@ sub LOAD {
 
 sub FORMAT {
     my $self = shift;
-	my $format = shift;
+	my $format = shift || "";
     $format = 'TTL' if $format =~ /^n(otation)?3$/i;
-    if ($format =~ /^(ttl|n3|sparql|txt)$/i) {
+    if (lc($format) =~ $FORMATS) {
 	    $format = uc($format);
 	    $self->$format( @_ );
 	}
@@ -72,6 +73,11 @@ sub XMLNS {
 sub TXT {
     my $self = shift;
     $self->MAP( sub { "$_\t".$self->{$_} } , @_ );
+}
+
+sub BEACON {
+    my $self = shift;
+    $self->MAP( sub { "#PREFIX: ".$self->{$_} } , @_ );
 }
 
 sub SELECT {
@@ -119,8 +125,8 @@ sub AUTOLOAD {
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20111102';              # check at compile time
-  my $ns = RDF::NS->new('20111102');   # check at runtime
+  use RDF::NS '20111124';              # check at compile time
+  my $ns = RDF::NS->new('20111124');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
@@ -133,7 +139,7 @@ sub AUTOLOAD {
 
   # To get RDF::Trine::Node::Resource instead of strings
   use RDF::NS::Trine;
-  $ns = RDF::NS::Trine->new('20111102');
+  $ns = RDF::NS::Trine->new('20111124');
   $ns->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
 
   # load your own mapping
@@ -210,6 +216,10 @@ vertical bars, and spaces.
 =method TXT ( prefix[es] )
 
 Returns a list of tabular-separated prefix-namespace-mappings.
+
+=method BEACON ( prefix[es] )
+
+Returns a list of BEACON format prefix definitions (not including prefixes).
 
 =method SELECT ( prefix[es] )
 

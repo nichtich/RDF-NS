@@ -1,3 +1,8 @@
+20111124 (709 prefixes)
+  added: gnd,grs,htir,infosys,muto,omapi,prf,webbox
+  changed: commerce
+  removed: uri
+  changed command line tool option syntax
 20111102 (702 prefixes) 
   new command line tool 'rdfns'
   added: vsw

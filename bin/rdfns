@@ -14,21 +14,28 @@ if (!@ARGV or $ARGV[0] =~ /^(-[?h]|--help)$/) {
      exit;
 }
 
-while (@ARGV and $ARGV[0] =~ /^-(.+)$/) {
-     if ($1 =~ /^(ttl|n(otation)?3|sparql|xmlns|txt)$/i) {
-         $format = $1;
-     } elsif ($1 =~ /^(\d{8})$/) {
-	     $version = $1;
-     } else {
-         print STDERR "Unknown option ".$ARGV[0]."\n";
-     }
-     shift @ARGV;
+foreach my $a (@ARGV) {
+    if ( $a =~ /^(\d{8})$/ ) {
+        $version = $a;
+        next;
+    }
+    if ( $a =~ s/\.([^.]+)$// ) {
+        my $f = $1;
+        if ( $f =~ $RDF::NS::FORMATS ) {
+            $format = $f;
+        } else {
+            print STDERR "Unknown format: $f\n";
+        }
+    }
+    print map {"$_\n"} RDF::NS->new($version)->FORMAT( $format, $a );
 }
 
-print map {"$_\n"} RDF::NS->new($version)->FORMAT( $format, @ARGV );
-
 __DATA__
-USAGE: rdfns [format] [-YYYYMMDD] <prefix[es]>
+USAGE: rdfns { [YYYYMMDD] <prefix[es]>[.format] }+
 
-  formats: -txt, -sparql, -ttl, -n3, -xmlns
+  formats: txt, sparql, ttl, n3, xmlns
+ 
+  examples:
+    rdfns 20111102 foaf,owl.ttl
+    rdfns foaf.xmlns foaf.n3
 
