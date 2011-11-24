@@ -109,7 +109,7 @@ sub URI {
 
 sub AUTOLOAD {
     my $self = shift;
-    return unless $AUTOLOAD =~ /:([a-z][a-z0-9]*)(_([^:]+))?$/;
+    return unless $AUTOLOAD =~ /^.*::([a-z][a-z0-9]*)_([^:]+))?$/;
     my $ns = $self->{$1} or return;
     my $local = $3 // shift;
     return $self->GET($ns) unless defined $local;
@@ -236,6 +236,7 @@ it just returns C<$uri> unmodified.
 
 There are several other CPAN modules to deal with IRI namespaces, for instance
 L<RDF::Trine::Namespace>, L<RDF::Trine::NamespaceMap>, L<RDF::Prefixes>,
-L<RDF::Simple::NS>, L<RDF::RDFa::Parser::Profile::PrefixCC> etc.
+L<RDF::Simple::NS>, L<RDF::RDFa::Parser::Profile::PrefixCC>,
+L<Class::RDF::NS>, L<XML::Namespace>, L<XML::CommonNS> etc.
 
 =cut
