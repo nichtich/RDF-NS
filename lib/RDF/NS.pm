@@ -10,7 +10,7 @@ our $AUTOLOAD;
 
 sub new {
     my $class   = shift;
-    my $version = shift;
+    my $version = shift || 'undef';
 	$version = $RDF::NS::VERSION if $version eq 'any';
     LOAD( $class, File::ShareDir::dist_file('RDF-NS', "$version.txt" ), @_ );
 }
@@ -44,6 +44,16 @@ sub LOAD {
     bless $ns, $class;
 }
 
+sub FORMAT {
+    my $self = shift;
+	my $format = shift;
+    $format = 'TTL' if $format =~ /^n(otation)?3$/i;
+    if ($format =~ /^(ttl|n3|sparql|txt)$/i) {
+	    $format = uc($format);
+	    $self->$format( @_ );
+	}
+}
+
 sub TTL {
     my $self = shift;
     $self->MAP( sub { "\@prefix $_: <".$self->{$_}."> ." } , @_ );
@@ -57,6 +67,11 @@ sub SPARQL {
 sub XMLNS {
     my $self = shift;
     $self->MAP( sub { "xmlns:$_=\"".$self->{$_}."\"" } , @_ );
+}
+
+sub TXT {
+    my $self = shift;
+    $self->MAP( sub { "$_\t".$self->{$_} } , @_ );
 }
 
 sub SELECT {
@@ -104,8 +119,8 @@ sub AUTOLOAD {
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20111031';              # check at compile time
-  my $ns = RDF::NS->new('20111031');   # check at runtime
+  use RDF::NS '20111102';              # check at compile time
+  my $ns = RDF::NS->new('20111102');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
@@ -118,7 +133,7 @@ sub AUTOLOAD {
 
   # To get RDF::Trine::Node::Resource instead of strings
   use RDF::NS::Trine;
-  $ns = RDF::NS::Trine->new('20111031');
+  $ns = RDF::NS::Trine->new('20111102');
   $ns->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
 
   # load your own mapping
@@ -142,11 +157,17 @@ defined at specific snapshots in time. These snapshots correspond to version
 numbers of this module. By selecting particular versions, you make sure that
 changes at prefix.cc won't affect your scripts.
 
-This module does not require L<RDF::Trine> which is recommended nevertheless.
+The command line client L<rdfns> is installed automatically with this module:
+
+  $ rdfns -ttl rdf,foaf
+  @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+  @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+This module does not require L<RDF::Trine>, which is recommended nevertheless.
 If you prefer RDF::NS to return instances of L<RDF::Trine::Node::Resource>
 instead of plain strings, use L<RDF::NS::Trine>.
 
-The code repository of this module contains an
+The code repository of this module also contains an
 L<update script|https://github.com/nichtich/RDF-NS/blob/master/update.pl>
 to download the current prefix-namespace mappings from L<http://prefix.cc>.
 
@@ -185,6 +206,10 @@ vertical bars, and spaces.
 Returns an XML namespace declaration or a list of such declarations in list
 context. Prefixes can be passed as single arguments or separated by commas,
 vertical bars, and spaces.
+
+=method TXT ( prefix[es] )
+
+Returns a list of tabular-separated prefix-namespace-mappings.
 
 =method SELECT ( prefix[es] )
 

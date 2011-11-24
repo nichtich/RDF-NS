@@ -1,3 +1,8 @@
-20111031 (701 prefixes) : first release at CPAN
+20111102 (702 prefixes) 
+  new command line tool 'rdfns'
+  added: vsw
+20111031 (701 prefixes)
+  first release at CPAN
   added: daiaserv,vvo
-20111028 : first full-featured version
+20111028
+  first full-featured version
