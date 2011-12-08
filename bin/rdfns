@@ -19,7 +19,10 @@ foreach my $a (@ARGV) {
         $version = $a;
         next;
     }
-    if ( $a =~ s/\.([^.]+)$// ) {
+    my $ns = RDF::NS->new($version);
+	if ( $a =~ /:/ ) {
+    	print map { $ns->URI($_)."\n" } split(/[|, ]+/, $a);
+    } elsif ( $a =~ s/\.([^.]+)$// ) {
         my $f = $1;
         if ( $f =~ $RDF::NS::FORMATS ) {
             $format = $f;
@@ -27,15 +30,16 @@ foreach my $a (@ARGV) {
             print STDERR "Unknown format: $f\n";
         }
     }
-    print map {"$_\n"} RDF::NS->new($version)->FORMAT( $format, $a );
+    print map {"$_\n"} $ns->FORMAT( $format, $a );
 }
 
 __DATA__
-USAGE: rdfns { [YYYYMMDD] <prefix[es]>[.format] }+
+USAGE: rdfns { [YYYYMMDD] ( <prefix[es]>[.format] | prefix:name ) }+
 
   formats: txt, sparql, ttl, n3, xmlns
  
   examples:
     rdfns 20111102 foaf,owl.ttl
     rdfns foaf.xmlns foaf.n3
+	rdfns rdfs:seeAlso
 

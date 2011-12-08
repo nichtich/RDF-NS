@@ -29,4 +29,14 @@ is( $ns->SPARQL('rdf'), "PREFIX rdf: <$rdf>", 'SPARQL("rdf")' );
 is( $ns->TTL('rdfs'), "\@prefix rdfs: <$rdfs> .", 'TTL("rdfs")' );
 is( $ns->XMLNS('rdfs'), "xmlns:rdfs=\"$rdfs\"", 'XMLNS("rdfs")' );
 
+# blank nodes
+my $b = $ns->URI('_:xy');
+isa_ok( $b, 'RDF::Trine::Node::Blank' );
+is( $b->blank_identifier, 'xy', 'blank node' );
+$b = $ns->_abc;
+is( $b->blank_identifier, 'abc', 'blank node' );
+isa_ok( $ns->URI('_:'), 'RDF::Trine::Node::Blank' );
+isa_ok( $ns->URI('_'), 'RDF::Trine::Node::Blank' );
+isa_ok( $ns->_, 'RDF::Trine::Node::Blank' );
+
 done_testing;

@@ -1,8 +1,12 @@
+20111208 (716 prefixes)
+  added: calli,dwc,eunis,georss,pna,swpatho,voidp
+  introduced blank nodes in RDF::NS::Trine
+  extended command line tool to expand QNames
 20111124 (709 prefixes)
   added: gnd,grs,htir,infosys,muto,omapi,prf,webbox
   changed: commerce
   removed: uri
-  changed command line tool option syntax
+  modified command line tool option syntax
 20111102 (702 prefixes) 
   new command line tool 'rdfns'
   added: vsw
