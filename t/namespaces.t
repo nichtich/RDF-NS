@@ -12,6 +12,7 @@ my $rdfs = 'http://www.w3.org/2000/01/rdf-schema#';
 my $ns = RDF::NS->new('20111028');
 
 is( $ns->rdf, $rdf, '$ns->rdf' );
+is( $ns->rdf_, $rdf, '$ns->rdf_' );
 is( $ns->rdf_type, $rdf.'type', '$ns->rdf_type' );
 is( $ns->rdf_type('x'), $rdf.'type', '$ns->rdf_type' );
 is( $ns->rdf('f-o'), $rdf."f-o", '$ns->rdf("f-o")' );
@@ -19,6 +20,7 @@ is( $ns->rdf(0), $rdf."0", '$ns->rdf("0")' );
 
 is( $ns->URI("rdf:type"), $rdf.'type', '$ns->URI("rdf:type")' );
 is( $ns->URI("rdf_type"), $rdf.'type', '$ns->URI("rdf_type")' );
+is( $ns->URI("<rdf:type>"), "rdf:type", '$ns->URI("<rdf:type>")' );
 
 # scalar context
 is( $ns->SPARQL('rdf'), "PREFIX rdf: <$rdf>", 'SPARQL("rdf")' );
@@ -54,5 +56,12 @@ is( $ns->URI(":foo"), "http://example.org/foo", "empty prefix allowed" );
 
 $ns = bless( { 'x' => 'http://example.org/' }, 'RDF::NS');
 is( $ns->x_alice, "http://example.org/alice", "blessed alone, one-letter prefix" );
+
+# blanks
+is( $ns->_abc, undef );
+is( $ns->_, undef );
+is( $ns->URI('_:xy'), undef );
+is( $ns->URI('_:'), undef );
+is( $ns->URI('_'), undef );
 
 done_testing;
