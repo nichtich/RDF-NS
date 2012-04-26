@@ -131,8 +131,8 @@ sub AUTOLOAD {
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20120124';              # check at compile time
-  my $ns = RDF::NS->new('20120124');   # check at runtime
+  use RDF::NS '20120426';              # check at compile time
+  my $ns = RDF::NS->new('20120426');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
@@ -149,7 +149,7 @@ sub AUTOLOAD {
 
   # To get RDF::Trine::Node::Resource instead of strings
   use RDF::NS::Trine;
-  $ns = RDF::NS::Trine->new('20120124');
+  $ns = RDF::NS::Trine->new('20120426');
   $ns->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
 
   # load your own mapping
