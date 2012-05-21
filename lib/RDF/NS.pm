@@ -131,8 +131,8 @@ sub AUTOLOAD {
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20120426';              # check at compile time
-  my $ns = RDF::NS->new('20120426');   # check at runtime
+  use RDF::NS '20120521';              # check at compile time
+  my $ns = RDF::NS->new('20120521');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
@@ -147,9 +147,9 @@ sub AUTOLOAD {
   $ns->TTL('foaf');        # @prefix foaf: <http://xmlns.com/foaf/0.1/> .
   $ns->XMLNS('foaf');      # xmlns:foaf="http://xmlns.com/foaf/0.1/"
 
-  # To get RDF::Trine::Node::Resource instead of strings
-  use RDF::NS::Trine;
-  $ns = RDF::NS::Trine->new('20120426');
+  # get RDF::Trine::Node::Resource instead of strings
+  use RDF::NS::Trine;      # requires RDF::Trine
+  $ns = RDF::NS::Trine->new('20120521');
   $ns->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
 
   # load your own mapping
@@ -159,7 +159,7 @@ sub AUTOLOAD {
   %map = $ns->SELECT('rdf,dc,foaf');
   $uri = $ns->SELECT('foo|bar|doz'); # returns first existing namespace
 
-  # instances are just blessed hash references
+  # instances of RDF::NS are just blessed hash references
   $ns->{'foaf'};           # http://xmlns.com/foaf/0.1/
   bless { foaf => 'http://xmlns.com/foaf/0.1/' }, 'RDF::NS';
   print (scalar %$ns) . "prefixes\n";
@@ -180,8 +180,9 @@ The command line client L<rdfns> is installed automatically with this module:
   @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 This module does not require L<RDF::Trine>, which is recommended nevertheless.
-If you prefer RDF::NS to return instances of L<RDF::Trine::Node::Resource>
-instead of plain strings, use L<RDF::NS::Trine>.
+You should install at least RDF::NS 0.140.  If you prefer RDF::NS to return
+instances of L<RDF::Trine::Node::Resource> instead of plain strings, use
+L<RDF::NS::Trine>.
 
 The code repository of this module also contains an
 L<update script|https://github.com/nichtich/RDF-NS/blob/master/update.pl>
