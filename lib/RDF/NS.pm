@@ -55,6 +55,23 @@ sub FORMAT {
 	}
 }
 
+sub PREFIX {
+	my ($self, $uri) = @_;
+	while ( my ($prefix, $namespace) = each %$self ) {
+		return $prefix if $uri eq $namespace;
+	}
+	undef;
+}
+
+sub PREFIXES {
+	my ($self, $uri) = @_;
+	my @prefixes;
+	while ( my ($prefix, $namespace) = each %$self ) {
+		push @prefixes, $prefix if $uri eq $namespace;
+	}
+	return @prefixes;
+}
+
 sub TTL {
     my $self = shift;
     $self->MAP( sub { "\@prefix $_: <".$self->{$_}."> ." } , @_ );
@@ -233,6 +250,16 @@ Returns a list of tabular-separated prefix-namespace-mappings.
 =method BEACON ( prefix[es] )
 
 Returns a list of BEACON format prefix definitions (not including prefixes).
+
+=method PREFIX ( $uri )
+
+Get a prefix of a namespace URI, if it is defined. This method does a reverse
+lookup which is less performant than the other direction. If multiple prefixes
+are defined, it is not determinstic which one is returned.
+
+=method PREFIXES ( $uri )
+
+Get all known prefixes of a namespace URI.
 
 =method SELECT ( prefix[es] )
 
