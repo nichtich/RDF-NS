@@ -1,26 +1,37 @@
+20120827 (830 prefixes)
+  added:   acco,admssw,aers,arg,br,cao,cogs,dive,dpl,eprints,eumida,germplasm,
+           intervals,lctr,lemon,library,life,marl,muni,ncbitaxon,no,npgd,npgg,
+           npgx,open,pav,pkmn,pml,poder,pol,r4ta,rda,rdagr1,rssynd,sdgp,set,sgv,
+           spif,tcga
+  changed: acm,crm,prism,prv,s4ac
+  new methods PREFIX,PREFIXES, and REVERSE
 20120521 (791 prefixes)
-  added: d2r,efo,enhancer,fcm,fise,fl,fls,oboe,pccz,rdrel,rec54
+  added:   d2r,efo,enhancer,fcm,fise,fl,fls,oboe,pccz,rdrel,rec54
 20120426 (780 prefixes)
-  added: aerols,carfo,cerif,cheminf,cts2,example,func,geom,gldp,goef,hg,ipad,isbd,kupkb,lexvo,lr,lv,marcrel,metalex,mohammad,npg,nsogi,oac,ogorg,omv,onssprel,ospost,pay,pf,pne,prism21,pro,prviv,ql,r2rml,rating,recipe,scufl2,ssn,vapour,vsws,wbc,wbp,wkd,wp,wscaim,xkos
+  added:   aerols,carfo,cerif,cheminf,cts2,example,func,geom,gldp,goef,hg,ipad,
+           isbd,kupkb,lexvo,lr,lv,marcrel,metalex,mohammad,npg,nsogi,oac,ogorg,
+           omv,onssprel,ospost,pay,pf,pne,prism21,pro,prviv,ql,r2rml,rating,
+           recipe,scufl2,ssn,vapour,vsws,wbc,wbp,wkd,wp,wscaim,xkos
   changed: linkedct,nfo,pc,prov,xhtml
 20120124 (733 prefixes)
-  added: arecipe,calli,cis,datafaqs,db,dwc,ends,eunis,georss,identity,italy,
-   jita,moby,np,ocd,places,pna,protegedc,swpatho,transit,voidp,vsr,wfdesc,wikipedia
+  added:   arecipe,calli,cis,datafaqs,db,dwc,ends,eunis,georss,identity,italy,
+           jita,moby,np,ocd,places,pna,protegedc,swpatho,transit,voidp,vsr,
+           wfdesc,wikipedia
   changed: daiaserv,media,nfo
 20111208 (716 prefixes)
-  added: calli,dwc,eunis,georss,pna,swpatho,voidp
+  added:   calli,dwc,eunis,georss,pna,swpatho,voidp
   introduced blank nodes in RDF::NS::Trine
   extended command line tool to expand QNames
 20111124 (709 prefixes)
-  added: gnd,grs,htir,infosys,muto,omapi,prf,webbox
+  added:   gnd,grs,htir,infosys,muto,omapi,prf,webbox
   changed: commerce
   removed: uri
   modified command line tool option syntax
 20111102 (702 prefixes) 
   new command line tool 'rdfns'
-  added: vsw
+  added:   vsw
 20111031 (701 prefixes)
   first release at CPAN
-  added: daiaserv,vvo
+  added:   daiaserv,vvo
 20111028
   first full-featured version

@@ -5,6 +5,7 @@ package RDF::NS;
 
 use Scalar::Util qw(blessed);
 use File::ShareDir;
+use Carp;
 
 our $AUTOLOAD;
 our $FORMATS = qr/ttl|n(otation)?3|sparql|xmlns|txt|beacon/;
@@ -13,6 +14,9 @@ sub new {
     my $class   = shift;
     my $version = shift || 'undef';
 	$version = $RDF::NS::VERSION if $version eq 'any';
+    croak "RDF::NS version must be a date" 
+        unless $version =~ /^([0-9]{4})-?([0-9][0-9])-?([0-9][0-9])$/;
+    $version = "$1$2$3";
     LOAD( $class, File::ShareDir::dist_file('RDF-NS', "$version.txt" ), @_ );
 }
 
@@ -159,8 +163,8 @@ sub AUTOLOAD {
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20120521';              # check at compile time
-  my $ns = RDF::NS->new('20120521');   # check at runtime
+  use RDF::NS '20120827';              # check at compile time
+  my $ns = RDF::NS->new('20120827');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
@@ -177,7 +181,7 @@ sub AUTOLOAD {
 
   # get RDF::Trine::Node::Resource instead of strings
   use RDF::NS::Trine;      # requires RDF::Trine
-  $ns = RDF::NS::Trine->new('20120521');
+  $ns = RDF::NS::Trine->new('20120827');
   $ns->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
 
   # load your own mapping
