@@ -72,6 +72,17 @@ sub PREFIXES {
 	return @prefixes;
 }
 
+sub REVERSE {
+    my $self = shift;
+    my $lookup = { };
+	while ( my ($prefix, $namespace) = each %$self ) {
+        my $has = $lookup->{$namespace};
+        $lookup->{$namespace} = $prefix unless
+            $has and length($has) < length($prefix);
+	}
+	return $lookup;
+}
+
 sub TTL {
     my $self = shift;
     $self->MAP( sub { "\@prefix $_: <".$self->{$_}."> ." } , @_ );
@@ -255,11 +266,17 @@ Returns a list of BEACON format prefix definitions (not including prefixes).
 
 Get a prefix of a namespace URI, if it is defined. This method does a reverse
 lookup which is less performant than the other direction. If multiple prefixes
-are defined, it is not determinstic which one is returned.
+are defined, it is not determinstic which one is returned. If you need to call
+this method frequently, better create a reverse hash (method REVERSE).
 
 =method PREFIXES ( $uri )
 
 Get all known prefixes of a namespace URI.
+
+=method REVERSE
+
+Create a lookup hash from namespace URIs to prefixes. If multiple prefixes
+exist, the shortes will be used.
 
 =method SELECT ( prefix[es] )
 
