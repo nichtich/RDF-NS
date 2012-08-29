@@ -6,7 +6,7 @@ package RDF::NS::Trine;
 use RDF::Trine::Node::Resource;
 use RDF::Trine::Node::Blank;
 
-use parent 'RDF::NS';
+use base 'RDF::NS';
 
 sub GET {
     RDF::Trine::Node::Resource->new($_[1]);
