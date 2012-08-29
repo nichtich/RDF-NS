@@ -8,6 +8,12 @@ use RDF::NS;
 my $rdf  = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
 my $rdfs = 'http://www.w3.org/2000/01/rdf-schema#';
 
+my $cur = RDF::NS->new;
+is( $cur->rdf, $rdf, 'rdf: namespace not changed' );
+
+$cur = RDF::NS->new('any');
+is( $cur->rdfs, $rdfs, 'rdfs: namespace not changed' );
+
 # get some prefixed URIs
 my $ns = RDF::NS->new('20111028');
 

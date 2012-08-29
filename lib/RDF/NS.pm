@@ -10,28 +10,37 @@ use Carp;
 our $AUTOLOAD;
 our $FORMATS = qr/ttl|n(otation)?3|sparql|xmlns|txt|beacon/;
 
+our $DATE_REGEXP = qr/^([0-9]{4})-?([0-9][0-9])-?([0-9][0-9])$/;
+
 sub new {
-    my $class   = shift;
-    my $version = shift || 'undef';
-	$version = $RDF::NS::VERSION if $version eq 'any';
-    croak "RDF::NS version must be a date" 
-        unless $version =~ /^([0-9]{4})-?([0-9][0-9])-?([0-9][0-9])$/;
-    $version = "$1$2$3";
-    LOAD( $class, File::ShareDir::dist_file('RDF-NS', "$version.txt" ), @_ );
-}
+    my ($class, $from, %options) = @_;
 
-sub LOAD {
-    my ($class, $file, %options) = @_;
-    $class = ref($class) || $class;
-
+    $from ||= 'any';
+    my $at   = $options{at} || 'any';
     my $warn = $options{'warn'};
 
+    if ( $from =~ $DATE_REGEXP ) {
+        $at   = "$1$2$3";
+        $from = 'any';
+    } elsif( $at =~ $DATE_REGEXP ) {
+        $at   = "$1$2$3";
+    } elsif ( $at !~ 'any' ) {
+        croak "RDF::NS expects a date as YYYY-MM-DD"; 
+    }
+
+    $from = File::ShareDir::dist_file('RDF-NS', "prefix.cc" )
+        if $from eq 'any';
+    croak "prefix file or date not found: $from"
+        unless -f $from;
+
     my $ns = { };
-    open (my $fh, '<', $file) or die "failed to open $file";
+    open (my $fh, '<', $from) or croak "failed to open $from";
     foreach (<$fh>) {
         chomp;
         next if /^#/;
-        my ($prefix, $namespace) = split "\t", $_;
+        my ($prefix, $namespace, $date) = split "\t", $_;
+        last if $date and $at ne 'any' and $date > $at;
+
         if ( $prefix =~ /^(isa|can|new|uri)$/ ) {
             warn "Cannot support prefix '$prefix'" if $warn;
             next;
@@ -45,8 +54,15 @@ sub LOAD {
             warn "Skipping unusual prefix '$prefix'";
         }
     }
+    close($fh);
 
-    bless $ns, $class;
+    bless $ns, (ref($class) || $class);
+}
+
+*LOAD = *new;
+
+sub COUNT {
+    scalar keys %{$_[0]};
 }
 
 sub FORMAT {
@@ -159,6 +175,46 @@ sub AUTOLOAD {
     return $self->GET($ns.$local);
 }
 
+sub UPDATE {
+    my ($self, $file, $date) = @_;
+
+    croak "RDF::NS expects a date as YYYY-MM-DD" 
+        unless $date and $date =~ $DATE_REGEXP;
+    $date = "$1$2$3"; 
+
+    my $old = RDF::NS->new($file);
+    my (@create,@update,@delete);
+
+    open (my $fh, '>>', $file) or croak "failed to open $file";
+    my @lines;
+
+    while( my ($prefix,$namespace) = each %$self ) {
+        if (!exists $old->{$prefix}) {
+            push @create, $prefix;
+        } elsif ( $old->{$prefix} ne $namespace ) {
+            push @update, $prefix;
+        } else {
+            next;
+        }
+        push @lines, "$prefix\t$namespace";
+    }
+    while( my ($prefix,$namespace) = each %$old ) {
+        if (!exists $self->{$prefix}) {
+            push @delete, $prefix;
+        }
+    }
+
+    print $fh "$_\t$date\n" for sort @lines;
+    close $fh;
+
+    return {
+        create => [ sort @create ],
+        update => [ sort @update ],
+        delete => [ sort @delete ],
+    };
+}
+
+
 1;
 
 =head1 SYNOPSIS
@@ -184,8 +240,8 @@ sub AUTOLOAD {
   $ns = RDF::NS::Trine->new('20120827');
   $ns->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
 
-  # load your own mapping
-  $ns = RDF::NS::LOAD("mapping.txt");
+  # load your own mapping from a file
+  $ns = RDF::NS->new("mapping.txt");
 
   # select particular mappings
   %map = $ns->SELECT('rdf,dc,foaf');
@@ -194,7 +250,8 @@ sub AUTOLOAD {
   # instances of RDF::NS are just blessed hash references
   $ns->{'foaf'};           # http://xmlns.com/foaf/0.1/
   bless { foaf => 'http://xmlns.com/foaf/0.1/' }, 'RDF::NS';
-  print (scalar %$ns) . "prefixes\n";
+  print (scalar keys %$ns) . "prefixes\n";
+  $ns->COUNT;              # also returns the number of prefixes
 
 =head1 DESCRIPTION
 
@@ -220,18 +277,15 @@ The code repository of this module also contains an
 L<update script|https://github.com/nichtich/RDF-NS/blob/master/update.pl>
 to download the current prefix-namespace mappings from L<http://prefix.cc>.
 
-=method new ( $version [, %options ] )
+=method new ( $file_or_date [, %options ] )
 
-Create a new namespace mapping with a selected version (mandatory). The special
-version string C<"any"> can be used to get the newest mapping - actually this
-is C<$RDF::NS::VERSION>, but you should better select a specific version, as
-mappings can change, violating backwards compatibility. Supported options 
-include C<warn> to enable warnings.
+Create a new namespace mapping from a selected file or date. The special string
+C<"any"> can be used to get the newest mapping, but you should better select a
+specific version, as mappings can change, violating backwards compatibility.
+Supported options include C<warn> to enable warnings and C<at> to specify a
+date. 
 
-=method LOAD ( $file [, %options ] )
-
-Load namespace mappings from a particular tab-separated file. See NEW for 
-supported options.
+=method LOAD ( $file_or_date [, %options ] )
 
 =method URI ( $short | "<$URI>" )
 
