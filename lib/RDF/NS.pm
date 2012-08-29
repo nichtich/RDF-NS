@@ -219,8 +219,8 @@ sub UPDATE {
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20120827';              # check at compile time
-  my $ns = RDF::NS->new('20120827');   # check at runtime
+  use RDF::NS '20120829';              # check at compile time
+  my $ns = RDF::NS->new('20120829');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
@@ -237,7 +237,7 @@ sub UPDATE {
 
   # get RDF::Trine::Node::Resource instead of strings
   use RDF::NS::Trine;      # requires RDF::Trine
-  $ns = RDF::NS::Trine->new('20120827');
+  $ns = RDF::NS::Trine->new('20120829');
   $ns->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
 
   # load your own mapping from a file

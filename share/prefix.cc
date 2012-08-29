@@ -842,3 +842,7 @@ set	http://www.w3.org/2000/10/swap/set#	20120827
 sgv	http://www.w3.org/TR/SVG/	20120827
 spif	http://spinrdf.org/spif#	20120827
 tcga	http://purl.org/tcga/core#	20120827
+mpeg7	http://rhizomik.net/ontologies/2005/03/Mpeg7-2001.owl#	20120829
+myprefix	http://myprefix.org/	20120829
+ngeoi	http://vocab.lenka.no/geo-deling#	20120829
+okg	http://openknowledgegraph.org/ontology/	20120829

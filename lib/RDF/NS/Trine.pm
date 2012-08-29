@@ -21,7 +21,7 @@ sub BLANK {
 =head1 SYNOPSIS
 
   use RDF::NS::Trine;
-  use constant NS => RDF::NS::Trine->new('20120827');
+  use constant NS => RDF::NS::Trine->new('20120829');
 
   NS->foaf_Person;        # a RDF::Trine::Node::Resource
   NS->URI('foaf:Person);  # same
