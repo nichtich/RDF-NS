@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+use strict;
+use warnings;
 use LWP::Simple qw(mirror);
 use RDF::NS;
 use File::Temp;
@@ -24,18 +26,18 @@ my $url = "http://prefix.cc/popular/all.file.txt";
 mirror($url,$tmp) or die "Failed to load $url";
 my $new = RDF::NS->LOAD( $tmp, warn => 1 );
 
-$new->UPDATE( "share/prefix.cc", $new_version );
+my $diff = $new->UPDATE( "share/prefix.cc", $new_version );
 
 foreach my $change (qw(create delete update)) {
     my $prefixes = $diff->{$change} or next;
     foreach my $prefix (@$prefixes) {
         if ($change eq 'create') {
-            printf "+ $prefix %s\n", $ns->URI($prefix);
+            printf "+ $prefix %s\n", $new->URI($prefix);
         } elsif ($change eq 'delete') {
-            printf "- $prefix %s\n", $old->URI($prefix);
+            printf "- $prefix %s\n", $cur->URI($prefix);
         } else {
-            printf "- $prefix %s\n", $old->URI($prefix);
-            printf "+ $prefix %s\n", $ns->URI($prefix);
+            printf "- $prefix %s\n", $cur->URI($prefix);
+            printf "+ $prefix %s\n", $new->URI($prefix);
         }
     }
 }
@@ -46,7 +48,7 @@ push @log, "  added: " . join(",",@{$diff->{create}}) if @{$diff->{create}};
 push @log, "  removed: " . join(",",@{$diff->{delete}}) if @{$diff->{delete}};
 push @log, "  changed: " . join(",",@{$diff->{update}}) if @{$diff->{update}};
 
-foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm README)) {
+foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm lib/RDF/NS/URIS.pm README)) {
     print "$cur_version => $new_version in $file\n";
     local ($^I,@ARGV)=('.bak',$file);
     while(<>) {
@@ -64,14 +66,16 @@ do {
         }
         print; 
     } 
-}
+};
 
-print <<'GIT'
+print <<HELP;
 To store and release the changes, call:
  
-  git add Changes README dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm share/$new_version.txt
+  git add Changes README dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm share/prefix.cc
   git commit -m "update to $new_version"
   git tag $new_version
   dzil release
 
-GIT
+HELP
+
+1;

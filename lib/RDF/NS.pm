@@ -154,7 +154,9 @@ sub GET {
 sub BLANK {
 }
 
-sub URI {
+*URI = *uri;
+
+sub uri {
     my $self = shift;
 	return $1 if $_[0] =~ /^<([a-zA-Z][a-zA-Z+.-]*:.+)>$/;
 	return $self->BLANK($_[0]) if $_[0] =~ /^_(:.*)?$/;
@@ -225,7 +227,7 @@ sub UPDATE {
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
   $ns->foaf('Person');     # http://xmlns.com/foaf/0.1/Person
-  $ns->URI('foaf:Person'); # http://xmlns.com/foaf/0.1/Person
+  $ns->uri('foaf:Person'); # http://xmlns.com/foaf/0.1/Person
 
   use RDF::NS;             # get rid if typing '$' by defining a constant
   use constant NS => RDF::NS->new('20111208');
@@ -234,11 +236,6 @@ sub UPDATE {
   $ns->SPAQRL('foaf');     # PREFIX foaf: <http://xmlns.com/foaf/0.1/>
   $ns->TTL('foaf');        # @prefix foaf: <http://xmlns.com/foaf/0.1/> .
   $ns->XMLNS('foaf');      # xmlns:foaf="http://xmlns.com/foaf/0.1/"
-
-  # get RDF::Trine::Node::Resource instead of strings
-  use RDF::NS::Trine;      # requires RDF::Trine
-  $ns = RDF::NS::Trine->new('20120829');
-  $ns->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
 
   # load your own mapping from a file
   $ns = RDF::NS->new("mapping.txt");
@@ -277,7 +274,11 @@ The code repository of this module also contains an
 L<update script|https://github.com/nichtich/RDF-NS/blob/master/update.pl>
 to download the current prefix-namespace mappings from L<http://prefix.cc>.
 
-=method new ( $file_or_date [, %options ] )
+=head1 GENERAL METHODS
+
+In most cases you only need the following lowercase methods.
+
+=head2 new ( $file_or_date [, %options ] )
 
 Create a new namespace mapping from a selected file or date. The special string
 C<"any"> can be used to get the newest mapping, but you should better select a
@@ -285,72 +286,86 @@ specific version, as mappings can change, violating backwards compatibility.
 Supported options include C<warn> to enable warnings and C<at> to specify a
 date. 
 
-=method LOAD ( $file_or_date [, %options ] )
+=head2 E<prefix>
 
-=method URI ( $short | "<$URI>" )
+Returns the namespace for E<prefix> if namespace prefix is defined. For
+instance C<< $ns->foaf >> returns C<http://xmlns.com/foaf/0.1/>.
+
+=head2 E<prefix_name>
+
+Returns the namespace plus local name, if namespace prefix is defined. For
+instance C<< $ns->foaf_Person >> returns C<http://xmlns.com/foaf/0.1/Person>.
+
+=head2 uri ( $short | "<$URI>" )
 
 Expand a prefixed URI, such as C<foaf:Person> or C<foaf_Person>. Alternatively 
 you can expand prefixed URIs with method calls, such as C<$ns-E<gt>foaf_Person>.
 If you pass an URI wrapped in C<E<lt>> and C<E<gt>>, it will not be expanded
 but returned as given.
 
-=method TTL ( prefix[es] )
+=head1 SERIALIZATION METHODS
+
+=head2 TTL ( prefix[es] )
 
 Returns a Turtle/Notation3 C<@prefix> definition or a list of such definitions
 in list context. Prefixes can be passed as single arguments or separated by
 commas, vertical bars, and spaces.
 
-=method SPARQL ( prefix[es] )
+=head2 SPARQL ( prefix[es] )
 
 Returns a SPARQL PREFIX definition or a list of such definitions in list
 context. Prefixes can be passed as single arguments or separated by commas,
 vertical bars, and spaces.
 
-=method XMLNS ( prefix[es] )
+=head2 XMLNS ( prefix[es] )
 
 Returns an XML namespace declaration or a list of such declarations in list
 context. Prefixes can be passed as single arguments or separated by commas,
 vertical bars, and spaces.
 
-=method TXT ( prefix[es] )
+=head2 TXT ( prefix[es] )
 
 Returns a list of tabular-separated prefix-namespace-mappings.
 
-=method BEACON ( prefix[es] )
+=head2 BEACON ( prefix[es] )
 
 Returns a list of BEACON format prefix definitions (not including prefixes).
 
-=method PREFIX ( $uri )
+=head1 LOOKUP METHODS
+
+=head2 PREFIX ( $uri )
 
 Get a prefix of a namespace URI, if it is defined. This method does a reverse
 lookup which is less performant than the other direction. If multiple prefixes
 are defined, it is not determinstic which one is returned. If you need to call
 this method frequently, better create a reverse hash (method REVERSE).
 
-=method PREFIXES ( $uri )
+=head2 PREFIXES ( $uri )
 
 Get all known prefixes of a namespace URI.
 
-=method REVERSE
+=head2 REVERSE
 
 Create a lookup hash from namespace URIs to prefixes. If multiple prefixes
 exist, the shortes will be used.
 
-=method SELECT ( prefix[es] )
+=head2 SELECT ( prefix[es] )
 
 In list context, returns a sorted list of prefix-namespace pairs, which
 can be used to assign to a hash. In scalar context, returns the namespace
 of the first prefix that was found. Prefixes can be passed as single arguments
 or separated by commas, vertical bars, and spaces.
 
-=method MAP ( $code [, prefix[es] ] )
+=head1 INTERNAL METHODS
+
+=head2 MAP ( $code [, prefix[es] ] )
 
 Internally used to map particular or all prefixes. Prefixes can be selected as
 single arguments or separated by commas, vertical bars, and spaces. In scalar
 context, C<$_> is set to the first existing prefix (if found) and C<$code> is
 called. In list context, found prefixes are sorted at mapped with C<$code>.
 
-=method GET ( $uri )
+=head2 GET ( $uri )
 
 This method is used internally to create URIs as return value of the URI
 method and all lowercase shortcut methods, such as C<foaf_Person>. By default
@@ -359,8 +374,8 @@ it just returns C<$uri> unmodified.
 =head1 SEE ALSO
 
 There are several other CPAN modules to deal with IRI namespaces, for instance
-L<RDF::Trine::Namespace>, L<RDF::Trine::NamespaceMap>, L<RDF::Prefixes>,
-L<RDF::Simple::NS>, L<RDF::RDFa::Parser::Profile::PrefixCC>,
+L<RDF::Trine::Namespace>, L<RDF::Trine::NamespaceMap>, L<URI::NamespaceMap>,
+L<RDF::Prefixes>, L<RDF::Simple::NS>, L<RDF::RDFa::Parser::Profile::PrefixCC>,
 L<Class::RDF::NS>, L<XML::Namespace>, L<XML::CommonNS> etc.
 
 =cut

@@ -2,10 +2,10 @@ use strict;
 use warnings;
 use Test::More;
 
-eval { require RDF::Trine::Node::Resource; };
+eval { require RDF::Trine; };
 my $version = $RDF::Trine::VERSION || 0; 
 if ( $@ or $version < 0.140) {
-	diag("RDF::Trine missing or too old - skip tests of RDF::NS::Trine");
+	diag("RDF::Trine missing: $version - skip tests of RDF::NS::Trine");
 	ok(1, "skip tests");
 	done_testing;
 	exit 0;
