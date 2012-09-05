@@ -846,3 +846,6 @@ mpeg7	http://rhizomik.net/ontologies/2005/03/Mpeg7-2001.owl#	20120829
 myprefix	http://myprefix.org/	20120829
 ngeoi	http://vocab.lenka.no/geo-deling#	20120829
 okg	http://openknowledgegraph.org/ontology/	20120829
+flow	http://www.w3.org/2005/01/wf/flow#	20120905
+osmsemnet	http://spatial.ucd.ie/2012/08/osmsemnet/	20120905
+wfprov	http://purl.org/wf4ever/wfprov#	20120905
