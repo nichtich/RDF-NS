@@ -849,3 +849,6 @@ okg	http://openknowledgegraph.org/ontology/	20120829
 flow	http://www.w3.org/2005/01/wf/flow#	20120905
 osmsemnet	http://spatial.ucd.ie/2012/08/osmsemnet/	20120905
 wfprov	http://purl.org/wf4ever/wfprov#	20120905
+category	http://dbpedia.org/resource/Category:	20120917
+ero	http://purl.obolibrary.org/obo/	20120917
+interval	http://reference.data.gov.uk/def/intervals/	20120917
