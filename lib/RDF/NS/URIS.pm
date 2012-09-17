@@ -15,7 +15,7 @@ sub GET {
 =head1 SYNOPSIS
 
   use RDF::NS::URIS;
-  use constant NS => RDF::NS::URIS->new('20120829');
+  use constant NS => RDF::NS::URIS->new('20120905');
 
   NS->foaf_Person;             # an URI object
   NS->uri('foaf:Person);       # same
@@ -24,7 +24,7 @@ sub GET {
 =head1 DESCRIPTION
 
 RDF::NS::URIS works like L<RDF::NS> but it returns instances of L<URI> instead
-of plain strings.
+of plain strings. You must have installed module L<URI> to use this package.
 
 =head1 SEE ALSO
 
