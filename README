@@ -16,7 +16,7 @@ for easy reuse without having to download them in every application.
 
 In short, you can get a full prefix-to-namespace mapping as blessed hash with
 
-    RDF::NS->new('20120917')
+    RDF::NS->new('20130208')
 
 The only argument to the constructor is the version number, that is equivalent
 to the date of a particular snapshot. The changelog in the file Changes lists
