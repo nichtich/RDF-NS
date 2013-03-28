@@ -12,9 +12,15 @@ my $ns = RDF::NS->new('20111028');
 is $ns->PREFIX('http://www.w3.org/1999/02/22-rdf-syntax-ns#'), 'rdf', 'PREFIX';
 
 my @nslist = $ns->PREFIXES($dc);
-ok ((grep { $_ eq 'dc' } @nslist), 'PREFIXES has dc');
-ok ((grep { $_ eq 'dc11' } @nslist), 'PREFIXES has dc11');
-is @nslist, 2, 'PREFIXES returns two';
+my $needs_diag = 0;
+ok ((grep { $_ eq 'dc' } @nslist), 'PREFIXES has dc')
+   or $needs_diag++;
+ok ((grep { $_ eq 'dc11' } @nslist), 'PREFIXES has dc11')
+   or $needs_diag++;
+is @nslist, 2, 'PREFIXES returns two'
+   or $needs_diag++;
+
+diag sprintf "\@nslist = (%s)", join(",",map {"'$_'"} @nslist) if $needs_diag;
 
 my $rev = $ns->REVERSE;
 
