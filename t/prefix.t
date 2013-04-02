@@ -11,10 +11,7 @@ my $ns = RDF::NS->new('20111028');
 
 is $ns->PREFIX('http://www.w3.org/1999/02/22-rdf-syntax-ns#'), 'rdf', 'PREFIX';
 
-my @nslist = $ns->PREFIXES($dc);
-ok ((grep { $_ eq 'dc' } @nslist), 'PREFIXES has dc');
-ok ((grep { $_ eq 'dc11' } @nslist), 'PREFIXES has dc11');
-is @nslist, 2, 'PREFIXES returns two';
+is_deeply [ sort $ns->PREFIXES($dc) ], [qw(dc dc11)], 'PREFIXES has dc, dc11';
 
 my $rev = $ns->REVERSE;
 

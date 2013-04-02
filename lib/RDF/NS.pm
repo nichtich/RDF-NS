@@ -77,11 +77,10 @@ sub FORMAT {
 
 sub PREFIX {
 	my ($self, $uri) = @_;
-        my $retprefix;
-	while ( my ($prefix, $namespace) = each %$self ) {
-		$retprefix = $prefix if $uri eq $namespace;
+	foreach my $prefix ( keys %$self ) {
+        return $prefix if $uri eq $self->{$prefix};
 	}
-	return $retprefix;
+	return undef;
 }
 
 sub PREFIXES {
