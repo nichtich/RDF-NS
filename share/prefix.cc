@@ -1059,3 +1059,9 @@ wlo	http://purl.org/ontology/wo/	20130327
 wsl	http://www.wsmo.org/ns/wsmo-lite#	20130327
 xmp	http://ns.adobe.com/xap/1.0/	20130327
 zoomaterms	http://rdf.ebi.ac.uk/vocabulary/zooma/	20130327
+dcm	http://dcm.com/	20130402
+gnvc	http://purl.org/gc/	20130402
+occult	http://data.totl.net/occult/	20130402
+pizza	http://www.co-ode.org/ontologies/pizza/pizza.owl#	20130402
+role	http://purl.org/vocab/participation/schema#	20130402
+w3po	http://purl.org/provenance/w3p/w3po#	20130402

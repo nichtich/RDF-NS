@@ -1,3 +1,9 @@
+20130402 (1033 prefixes)
+  added: dcm,gnvc,occult,pizza,role
+  changed: w3po
+
+  fixed bug in PREFIXES, caused by returning from an each-loop
+
 20130327 (1028 prefixes)
   added: agls,agrelon,aigp,aos,api,being,bf,bif,biotop,biro,cb,cgov,city,cold,coll,comm,coun,cpa,crsw,csp,ctorg,dbtont,dcite,dcndl,deo,dl,doco,dqm,dr,drm,ds,dso,ecos,edgar,elec,emp,ep,fcp,fowl,gadm,gastro,geod,geosp,gnm,graffle,graves,gso,infor,inno,iol,itsmo,lcy,lh,lingvo,lmm1,lmm2,lsc,mads,mds,meb,mil,mime,moac,mrel,msr,mvco,ntag,nyt,obsm,odapp,odpart,odv,oecc,ontopic,opl,opmo,oprovo,ordf,osadm,osgeom,osp,osr,osspr,ostop,part,passim,prvt,pso,ptop,pwo,quty,raul,rdafrbr,rdag1,rdag3,rdarel,semio,seq,situ,snarm,spt,swpo,tao,te,tis,trait,turismo,tvc,vocab,vrank,wlo,wsl,xmp,zoomaterms
   changed: acm,br,crm,disco,dita,food,idemo,lib,ps,s2s,sc,sec
