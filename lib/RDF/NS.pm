@@ -80,7 +80,7 @@ sub PREFIX {
 	foreach my $prefix ( keys %$self ) {
         return $prefix if $uri eq $self->{$prefix};
 	}
-	return undef;
+	return;
 }
 
 sub PREFIXES {
