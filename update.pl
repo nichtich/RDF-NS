@@ -48,7 +48,7 @@ push @log, "  added: " . join(",",@{$diff->{create}}) if @{$diff->{create}};
 push @log, "  removed: " . join(",",@{$diff->{delete}}) if @{$diff->{delete}};
 push @log, "  changed: " . join(",",@{$diff->{update}}) if @{$diff->{update}};
 
-foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm lib/RDF/NS/URIS.pm README)) {
+foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm lib/RDF/NS/URIS.pm README.md)) {
     print "$cur_version => $new_version in $file\n";
     local ($^I,@ARGV)=('.bak',$file);
     while(<>) {
@@ -71,7 +71,7 @@ do {
 print <<HELP;
 To store and release the changes, call:
  
-  git add Changes README dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm share/prefix.cc
+  git add Changes README.md dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm share/prefix.cc
   git commit -m "update to $new_version"
   git tag $new_version
   dzil release
