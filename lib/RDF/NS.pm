@@ -378,4 +378,6 @@ L<RDF::Trine::Namespace>, L<RDF::Trine::NamespaceMap>, L<URI::NamespaceMap>,
 L<RDF::Prefixes>, L<RDF::Simple::NS>, L<RDF::RDFa::Parser::Profile::PrefixCC>,
 L<Class::RDF::NS>, L<XML::Namespace>, L<XML::CommonNS> etc.
 
+=encoding utf8
+
 =cut

@@ -30,4 +30,6 @@ of plain strings. You must have installed module L<URI> to use this package.
 
 L<URI::NamespaceMap>
 
+=encoding utf8
+
 =cut

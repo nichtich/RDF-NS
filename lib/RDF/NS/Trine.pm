@@ -46,4 +46,6 @@ installed automatically together with L<RDF::NS>!
 
 Returns a new L<RDF::Trine::Node::Blank>.
 
+=encoding utf8
+
 =cut
