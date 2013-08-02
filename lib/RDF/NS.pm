@@ -290,7 +290,7 @@ date.
 
 =head2 I<prefix>
 
-Returns the namespace for E<prefix> if namespace prefix is defined. For
+Returns the namespace for I<prefix> if namespace prefix is defined. For
 instance C<< $ns->foaf >> returns C<http://xmlns.com/foaf/0.1/>.
 
 =head2 I<prefix_name>
@@ -301,7 +301,7 @@ instance C<< $ns->foaf_Person >> returns C<http://xmlns.com/foaf/0.1/Person>.
 =head2 uri ( $short | "<$URI>" )
 
 Expand a prefixed URI, such as C<foaf:Person> or C<foaf_Person>. Alternatively 
-you can expand prefixed URIs with method calls, such as C<$ns-E<gt>foaf_Person>.
+you can expand prefixed URIs with method calls, such as C<$ns-I<gt>foaf_Person>.
 If you pass an URI wrapped in C<E<lt>> and C<E<gt>>, it will not be expanded
 but returned as given.
 
