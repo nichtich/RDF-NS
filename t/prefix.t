@@ -10,6 +10,7 @@ my $dc   = 'http://purl.org/dc/elements/1.1/';
 my $ns = RDF::NS->new('20111028');
 
 is $ns->PREFIX('http://www.w3.org/1999/02/22-rdf-syntax-ns#'), 'rdf', 'PREFIX';
+is $ns->PREFIX('http://127.0.0.1/dev/null'), undef, 'not existing prefix';
 
 is_deeply [ sort $ns->PREFIXES($dc) ], [qw(dc dc11)], 'PREFIXES has dc, dc11';
 

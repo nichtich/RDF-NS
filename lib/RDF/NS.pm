@@ -67,40 +67,40 @@ sub COUNT {
 
 sub FORMAT {
     my $self = shift;
-	my $format = shift || "";
+    my $format = shift || "";
     $format = 'TTL' if $format =~ /^n(otation)?3$/i;
     if (lc($format) =~ $FORMATS) {
-	    $format = uc($format);
-	    $self->$format( @_ );
-	}
+        $format = uc($format);
+        $self->$format( @_ );
+    }
 }
 
 sub PREFIX {
-	my ($self, $uri) = @_;
-	foreach my $prefix ( keys %$self ) {
+    my ($self, $uri) = @_;
+    foreach my $prefix ( keys %$self ) {
         return $prefix if $uri eq $self->{$prefix};
-	}
-	return;
+    }
+    return;
 }
 
 sub PREFIXES {
-	my ($self, $uri) = @_;
-	my @prefixes;
-	while ( my ($prefix, $namespace) = each %$self ) {
-		push @prefixes, $prefix if $uri eq $namespace;
-	}
-	return @prefixes;
+    my ($self, $uri) = @_;
+    my @prefixes;
+    while ( my ($prefix, $namespace) = each %$self ) {
+        push @prefixes, $prefix if $uri eq $namespace;
+    }
+    return @prefixes;
 }
 
 sub REVERSE {
     my $self = shift;
     my $lookup = { };
-	while ( my ($prefix, $namespace) = each %$self ) {
+    while ( my ($prefix, $namespace) = each %$self ) {
         my $has = $lookup->{$namespace};
         $lookup->{$namespace} = $prefix unless
             $has and length($has) < length($prefix);
-	}
-	return $lookup;
+    }
+    return $lookup;
 }
 
 sub TTL {
@@ -158,8 +158,8 @@ sub BLANK {
 
 sub uri {
     my $self = shift;
-	return $1 if $_[0] =~ /^<([a-zA-Z][a-zA-Z+.-]*:.+)>$/;
-	return $self->BLANK($_[0]) if $_[0] =~ /^_(:.*)?$/;
+    return $1 if $_[0] =~ /^<([a-zA-Z][a-zA-Z+.-]*:.+)>$/;
+    return $self->BLANK($_[0]) if $_[0] =~ /^_(:.*)?$/;
     return unless shift =~ /^([a-z][a-z0-9]*)?([:_]([^:]+))?$/;
     my $ns = $self->{ defined $1 ? $1 : '' };
     return unless defined $ns;
@@ -170,7 +170,7 @@ sub uri {
 sub AUTOLOAD {
     my $self = shift;
     return unless $AUTOLOAD =~ /^.*::([a-z][a-z0-9]*)?(_([^:]+)?)?$/;
-	return $self->BLANK( defined $3 ? "_:$3" : '_' ) unless $1;
+    return $self->BLANK( defined $3 ? "_:$3" : '_' ) unless $1;
     my $ns = $self->{$1} or return;
     my $local = defined $3 ? $3 : shift;
     return $self->GET($ns) unless defined $local;

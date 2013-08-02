@@ -31,23 +31,26 @@ is( $ns->URI("<rdf:type>"), "rdf:type", '$ns->URI("<rdf:type>")' );
 # scalar context
 is( $ns->SPARQL('rdf'), "PREFIX rdf: <$rdf>", 'SPARQL("rdf")' );
 is( $ns->TTL('rdfs'), "\@prefix rdfs: <$rdfs> .", 'TTL("rdfs")' );
+
 # order is relevant
 is( $ns->XMLNS('rdfs,rdf'), "xmlns:rdfs=\"$rdfs\"", 'order ok' );
 is( $ns->XMLNS('rdf,rdfs'), "xmlns:rdf=\"$rdf\"", 'order ok' );
 
-my $sparql = ["PREFIX rdf: <$rdf>","PREFIX rdfs: <$rdfs>"];
-my $turtle = ["\@prefix rdf: <$rdf> .","\@prefix rdfs: <$rdfs> ."];
-my $xmlns  = ["xmlns:rdf=\"$rdf\"","xmlns:rdfs=\"$rdfs\""];
+my %formats = (
+    SPARQL => ["PREFIX rdf: <$rdf>","PREFIX rdfs: <$rdfs>"],
+    TTL    => ["\@prefix rdf: <$rdf> .","\@prefix rdfs: <$rdfs> ."],
+    XMLNS  => ["xmlns:rdf=\"$rdf\"","xmlns:rdfs=\"$rdfs\""],
+    TXT    => ["rdf\t$rdf","rdfs\t$rdfs"],
+    BEACON => ["#PREFIX: $rdf","#PREFIX: $rdfs"],
+);
 
 # list context
 my @args = (['rdfs','rdf'],['rdf|rdfs'],['rdf,xxxxxx','rdfs'],['rdfs  rdf']);
-foreach (@args) {
-    my @list = $ns->SPARQL(@$_);
-    is_deeply( \@list, $sparql, 'SPARQL(...)' );
-    @list= $ns->TTL(@$_);
-    is_deeply( \@list, $turtle, 'TTL(...)' );
-    @list= $ns->XMLNS(@$_);
-    is_deeply( \@list, $xmlns, 'XMLNS(...)' );
+foreach my $format (keys %formats) {
+    foreach (@args) {
+        my @list = $ns->$format(@$_);
+        is_deeply( \@list, $formats{$format}, "$format(...)" );
+    }
 }
 
 my %s = $ns->SELECT('rdfs,xx','rdf');
