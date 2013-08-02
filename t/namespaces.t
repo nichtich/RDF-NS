@@ -42,13 +42,14 @@ my %formats = (
     XMLNS  => ["xmlns:rdf=\"$rdf\"","xmlns:rdfs=\"$rdfs\""],
     TXT    => ["rdf\t$rdf","rdfs\t$rdfs"],
     BEACON => ["#PREFIX: $rdf","#PREFIX: $rdfs"],
+    ""     => [$rdf,$rdfs],
 );
 
 # list context
 my @args = (['rdfs','rdf'],['rdf|rdfs'],['rdf,xxxxxx','rdfs'],['rdfs  rdf']);
 foreach my $format (keys %formats) {
     foreach (@args) {
-        my @list = $ns->$format(@$_);
+        my @list = $format ? $ns->$format(@$_) : $ns->FORMAT( $format, @$_ );
         is_deeply( \@list, $formats{$format}, "$format(...)" );
     }
 }

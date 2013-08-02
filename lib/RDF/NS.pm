@@ -72,6 +72,8 @@ sub FORMAT {
     if (lc($format) =~ $FORMATS) {
         $format = uc($format);
         $self->$format( @_ );
+    } elsif ($format eq "") {
+        $self->MAP( sub { $self->{$_} } , @_ );
     }
 }
 
@@ -286,12 +288,12 @@ specific version, as mappings can change, violating backwards compatibility.
 Supported options include C<warn> to enable warnings and C<at> to specify a
 date. 
 
-=head2 E<prefix>
+=head2 I<prefix>
 
 Returns the namespace for E<prefix> if namespace prefix is defined. For
 instance C<< $ns->foaf >> returns C<http://xmlns.com/foaf/0.1/>.
 
-=head2 E<prefix_name>
+=head2 I<prefix_name>
 
 Returns the namespace plus local name, if namespace prefix is defined. For
 instance C<< $ns->foaf_Person >> returns C<http://xmlns.com/foaf/0.1/Person>.

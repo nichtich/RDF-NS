@@ -6,7 +6,7 @@ use strict;
 use warnings;
 
 use RDF::NS;
-my $format = 'txt';
+my $format = '';
 my $version = 'any';
 
 if (!@ARGV or $ARGV[0] =~ /^(-[?h]|--help)$/) {
