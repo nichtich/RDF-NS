@@ -16,7 +16,7 @@ for easy reuse without having to download them in every application.
 
 In short, you can get a full prefix-to-namespace mapping as blessed hash with
 
-    RDF::NS->new('20130402')
+    RDF::NS->new('20130327')
 
 The only argument to the constructor is the version number, that is equivalent
 to the date of a particular snapshot. The changelog in the file Changes lists
@@ -31,3 +31,6 @@ documentation for more information.
 
 The source code of RDF::NS is available at https://github.com/nichtich/RDF-NS/
 with releases at http://search.cpan.org/dist/RDF-NS/.
+
+[![Build Status](https://travis-ci.org/nichtich/RDF-NS.png)](https://travis-ci.org/nichtich/RDF-NS)
+[![Coverage Status](https://coveralls.io/repos/nichtich/RDF-NS/badge.png?branch=master)](https://coveralls.io/r/nichtich/RDF-NS?branch=master)
