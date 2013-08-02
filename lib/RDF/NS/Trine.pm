@@ -3,6 +3,7 @@ use warnings;
 package RDF::NS::Trine;
 #ABSTRACT: Popular RDF namespace prefixes from prefix.cc as RDF::Trine nodes
 
+use v5.10;
 use RDF::Trine::Node::Resource;
 use RDF::Trine::Node::Blank;
 
@@ -13,7 +14,8 @@ sub GET {
 }
 
 sub BLANK {
-	RDF::Trine::Node::Blank->new($2) if $_[1] =~ /^_(:(.*))?$/;
+    my $id = ($_[1] =~ /^_(:(.+))$/ ? $2 : undef);
+    return RDF::Trine::Node::Blank->new( $id );
 }
 
 1;
@@ -34,7 +36,7 @@ sub BLANK {
 =head1 DESCRIPTION
 
 RDF::NS::Trine works like L<RDF::NS> but it returns instances of
-L<RDF::Trine::Node::Resource> (and L<RDF::Trine::Node::Blank> instead of
+L<RDF::Trine::Node::Resource> (or L<RDF::Trine::Node::Blank>) instead of
 strings.
 
 Before using this module, make sure to install L<RDF::Trine>, which is not
@@ -42,7 +44,7 @@ installed automatically together with L<RDF::NS>!
 
 =head1 ADDITIONAL METHODS
 
-=head1 BLANK ( [ $short ] )
+=head2 BLANK ( [ $short ] )
 
 Returns a new L<RDF::Trine::Node::Blank>.
 
