@@ -259,20 +259,20 @@ maintainable.  In the end we all use more or less the same prefix definitions,
 as collected at L<http://prefix.cc>. This module includes all these prefixes as
 defined at specific snapshots in time. These snapshots correspond to version
 numbers of this module. By selecting particular versions, you make sure that
-changes at prefix.cc won't affect your scripts.
+changes at prefix.cc won't affect your programs.
 
 The command line client L<rdfns> is installed automatically with this module:
 
-  $ rdfns -ttl rdf,foaf
+  $ rdfns rdf,foaf.ttl
   @prefix foaf: <http://xmlns.com/foaf/0.1/> .
   @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 This module does not require L<RDF::Trine>, which is recommended nevertheless.
-You should install at least RDF::NS 0.140.  If you prefer RDF::NS to return
-instances of L<RDF::Trine::Node::Resource> instead of plain strings, use
-L<RDF::NS::Trine>.
+(at least version 0.140).  If you prefer RDF::NS to return instances of 
+L<RDF::Trine::Node::Resource> instead of plain strings, use L<RDF::NS::Trine>.
+<RDF::NS::URIS> is a similar module that returns instances of L<URI>.
 
-The code repository of this module also contains an
+The code repository of this module contains an
 L<update script|https://github.com/nichtich/RDF-NS/blob/master/update.pl>
 to download the current prefix-namespace mappings from L<http://prefix.cc>.
 
