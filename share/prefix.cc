@@ -1147,3 +1147,6 @@ wikterms	http://wiktionary.dbpedia.org/terms/	20130802
 wl	http://www.wsmo.org/ns/wsmo-lite#	20130802
 won	http://purl.org/webofneeds/model#	20130802
 worldbank	http://worldbank.270a.info/dataset/	20130802
+copyright	http://rhizomik.net/ontologies/copyrightonto.owl#	20130812
+lldr	http://purl.oclc.org/NET/lldr/ns#	20130812
+up	http://users.ugent.be/~tdenies/up/	20130812

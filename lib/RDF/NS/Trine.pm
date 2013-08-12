@@ -23,7 +23,7 @@ sub BLANK {
 =head1 SYNOPSIS
 
   use RDF::NS::Trine;
-  use constant NS => RDF::NS::Trine->new('20130802');
+  use constant NS => RDF::NS::Trine->new('20130812');
 
   NS->foaf_Person;        # iri('http://xmlns.com/foaf/0.1/Person')
   NS->uri('foaf:Person);  #  same RDF::Trine::Node::Resource
