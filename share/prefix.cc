@@ -1150,3 +1150,8 @@ worldbank	http://worldbank.270a.info/dataset/	20130802
 copyright	http://rhizomik.net/ontologies/copyrightonto.owl#	20130812
 lldr	http://purl.oclc.org/NET/lldr/ns#	20130812
 up	http://users.ugent.be/~tdenies/up/	20130812
+fea	http://vocab.data.gov/def/fea#	20130816
+penis	http://penis.to/#	20130816
+scms	http://ns.aksw.org/scms/annotations/	20130816
+sdo	http://schema.org/	20130816
+wapp	http://ns.rww.io/wapp#	20130816
