@@ -6,6 +6,10 @@ use LWP::Simple qw(mirror);
 use RDF::NS;
 use File::Temp;
 
+# make sure, git repository is clean
+my $dirty = `git status --porcelain`;
+die "git repository is dirty\n" if $dirty;
+
 # get current version distribution
 my $dist = do { local( @ARGV, $/ ) = 'dist.ini'; <> };
 my $cur_version = $1 if $dist =~ /^\s*version\s*=\s*([^\s]+)/m;
@@ -56,26 +60,24 @@ foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm lib/RDF/NS/URIS.
         print;
     }
 }
+
+my $msg = `git log --pretty=format:"  %s" $cur_version..`;
+
 do {
     print "prepend modifications to Changes\n"; 
     local ($^I,@ARGV)=('.bak','Changes');
     my $line=0;
     while (<>) {
-        if (!$line++) {
+        if (!$line++) { # prepend
             print join '', map { "$_\n" } @log;
+            print "\n$msg" if $msg;
+            print "\n\n";
         }
         print; 
     } 
 };
 
-print <<HELP;
-To store and release the changes, call:
- 
-  git add Changes README.md dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm share/prefix.cc
-  git commit -m "update to $new_version"
-  git tag $new_version
-  dzil release
-
-HELP
+print `git add -u`;
+print `git commit -m "update to $new_version"`; 
 
 1;
