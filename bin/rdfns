@@ -1,45 +1,21 @@
-#!/usr/bin/perl
-#ABSTRACT: quickly get common URI namespaces
+#!perl
+#ABSTRACT: look up common URI namespaces and prefixes
 #PODNAME: rdfns
 
 use strict;
-use warnings;
+use App::rdfns;
+exit App::rdfns->new->run(@ARGV);
 
-use RDF::NS;
-my $format = '';
-my $version = 'any';
+=head1 SYNOPSIS
 
-if (!@ARGV or $ARGV[0] =~ /^(-[?h]|--help)$/) {
-     print <DATA>;
-     exit;
-}
+    $ rdfns foaf.xmlns foaf.n3 dbpedia.sparql
+	$ rdfns rdfs:seeAlso
+    $ rdfns 20111102 foaf,owl.ttl
+    $ rdfns http://www.w3.org/2003/01/geo/wgs84_pos#
+    $ rdfns --help
 
-foreach my $a (@ARGV) {
-    if ( $a =~ /^(\d{8})$/ ) {
-        $version = $a;
-        next;
-    }
-    my $ns = RDF::NS->new($version);
-	if ( $a =~ /:/ ) {
-    	print map { $ns->URI($_)."\n" } split(/[|, ]+/, $a);
-    } elsif ( $a =~ s/\.([^.]+)$// ) {
-        my $f = $1;
-        if ( $f =~ $RDF::NS::FORMATS ) {
-            $format = $f;
-        } else {
-            print STDERR "Unknown format: $f\n";
-        }
-    }
-    print map {"$_\n"} $ns->FORMAT( $format, $a );
-}
+=head1 SEE ALSO
 
-__DATA__
-USAGE: rdfns { [YYYYMMDD] ( <prefix[es]>[.format] | prefix:name ) }+
+This script is internally implemented in L<App::rdfns>, based on L<RDF::NS>.
 
-  formats: txt, sparql, ttl, n3, xmlns
- 
-  examples:
-    rdfns 20111102 foaf,owl.ttl
-    rdfns foaf.xmlns foaf.n3
-	rdfns rdfs:seeAlso
-
+=cut
