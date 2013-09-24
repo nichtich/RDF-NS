@@ -1,3 +1,9 @@
+20130924 (1132 prefixes)
+  added: alchemy,archdesc,cosmo,cro,dbpo,dt,frbrer,frsad,gndo,icane,ludo,oj,oliasystem,orca,saif,sdmxa,sdmxd,stream,tsioc,twaapi,wd,who,wikidata
+  changed: agrelon,cnt,co,sdo,yago
+
+  made REVERSE reproducible
+
 20130816 (1109 prefixes)
   added: fea,penis,scms,sdo,wapp
 
