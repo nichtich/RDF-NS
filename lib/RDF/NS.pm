@@ -99,8 +99,9 @@ sub REVERSE {
     my $lookup = { };
     while ( my ($prefix, $namespace) = each %$self ) {
         my $has = $lookup->{$namespace};
-        $lookup->{$namespace} = $prefix unless
-            $has and length($has) < length($prefix);
+        if (!$has or length($has) > length($prefix) or $has ge $prefix) {
+            $lookup->{$namespace} = $prefix;
+        }
     }
     return $lookup;
 }
@@ -349,7 +350,8 @@ Get all known prefixes of a namespace URI.
 =head2 REVERSE
 
 Create a lookup hash from namespace URIs to prefixes. If multiple prefixes
-exist, the shortes will be used.
+exist, the shortes is be used. If multiple prefixes with same length exist, the
+first in alphabetical order is used.
 
 =head2 SELECT ( prefix[es] )
 

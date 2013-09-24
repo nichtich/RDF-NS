@@ -18,5 +18,6 @@ my $rev = $ns->REVERSE;
 
 is $rev->{$rdfs}, 'rdfs', 'reverse';
 is $rev->{$dc}, 'dc', 'reverse';
+is $rev->{'http://www.w3.org/2003/01/geo/wgs84_pos#'}, 'geo', 'reverse';
 
 done_testing;
