@@ -22,6 +22,9 @@ test_run ['http://www.w3.org/2003/01/geo/wgs84_pos#'] => ["geo"],
     "look up prefix";
 test_run ['wgs.prefix'] => ["geo"], 'normalize prefix';
 
+test_run ['xsd,foaf.json'] => ['"foaf": "http://xmlns.com/foaf/0.1/",
+"xsd": "http://www.w3.org/2001/XMLSchema#"'], 'JSON (multiple prefixes)';
+
 # TODO: more tests
     
 done_testing;

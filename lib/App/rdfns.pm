@@ -45,7 +45,11 @@ sub run {
                 print STDERR "Unknown format: $f\n";
             }
         }
-        print map {"$_\n"} $ns->FORMAT( $format, $a );
+        if ( lc($format) eq 'json' ) {
+            say join ",\n", $ns->FORMAT( $format, $a );
+        } else {
+            say $_ for $ns->FORMAT( $format, $a );
+        }
     }
 }
 
@@ -53,15 +57,23 @@ sub usage {
     print <<'USAGE';
 USAGE: rdfns { [YYYYMMDD] ( <prefix[es]>[.format] | prefix:name | URL ) }+
 
-  formats: txt, sparql, ttl, n3, xmlns, beacon, prefix
+  formats: txt, sparql, ttl, n3, xmlns, json, beacon, prefix
  
   examples:
     rdfns 20111102 foaf,owl.ttl
     rdfns foaf.xmlns foaf.n3
-	rdfns rdfs:seeAlso
+    rdfns rdfs:seeAlso
     rdfns http://www.w3.org/2003/01/geo/wgs84_pos#
     rdfns wgs.prefix
 USAGE
 }
 
 1;
+
+=head1 SEE ALSO
+
+This module implements the command line client L<rdfns>.
+
+=encoding utf8
+
+=cut

@@ -8,7 +8,7 @@ use File::ShareDir;
 use Carp;
 
 our $AUTOLOAD;
-our $FORMATS = qr/ttl|n(otation)?3|sparql|xmlns|txt|beacon/;
+our $FORMATS = qr/ttl|n(otation)?3|sparql|xmlns|txt|beacon|json/;
 
 our $DATE_REGEXP = qr/^([0-9]{4})-?([0-9][0-9])-?([0-9][0-9])$/;
 
@@ -124,6 +124,11 @@ sub XMLNS {
 sub TXT {
     my $self = shift;
     $self->MAP( sub { "$_\t".$self->{$_} } , @_ );
+}
+
+sub JSON {
+    my $self = shift;
+    $self->MAP( sub { "\"$_\": \"".$self->{$_}."\"" } , @_ );
 }
 
 sub BEACON {

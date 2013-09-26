@@ -8,11 +8,72 @@ exit App::rdfns->new->run(@ARGV);
 
 =head1 SYNOPSIS
 
-    $ rdfns foaf.xmlns foaf.n3 dbpedia.sparql
-	$ rdfns rdfs:seeAlso
+    # look up namespaces in several formats
+    $ rdfns foaf.xmlns foaf.n3 dbpedia.sparql foaf.json
+
+    # look up a prefixed URI
+    $ rdfns rdfs:seeAlso
+
+    # look up multiple URIs at a given version
     $ rdfns 20111102 foaf,owl.ttl
+
+    # lookup preferred prefix
     $ rdfns http://www.w3.org/2003/01/geo/wgs84_pos#
+
+    # map prefix to preferred prefix
+    $ rdfns wgs.prefix
+
+    # show all options and some examples
     $ rdfns --help
+
+=head1 FORMATS
+
+=over
+
+=item ttl, n3, notation3
+
+RDF/Turtle or Notation3 syntax:
+
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+=item sparql
+
+SPARQL syntax:
+
+    PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+=item txt
+
+Tabulator-separated:
+
+    foaf http://xmlns.com/foaf/0.1/
+
+=item xmlns
+
+XML namespace declaration
+
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+
+=item json
+
+JSON key-values, for instance for JSON-LD. Multiple entries are comma-separated.
+
+    "foaf": "http://xmlns.com/foaf/0.1/"
+
+=item beacon
+
+BEACON format syntax:
+
+    #PREFIX: http://xmlns.com/foaf/0.1/
+
+=item prefix
+
+Maps a prefix to its preferred form, this is the shortest and first in
+alphabetical order. For instance C<rdfns wgs84.prefix> returns prefix C<geo>.
+
+=back
+
+=encoding utf8
 
 =head1 SEE ALSO
 
