@@ -1,3 +1,7 @@
+20130926 (1132 prefixes)
+  fixed documentation
+  new format 'json' for JSON-LD
+
 20130924 (1132 prefixes)
   added: alchemy,archdesc,cosmo,cro,dbpo,dt,frbrer,frsad,gndo,icane,ludo,oj,oliasystem,orca,saif,sdmxa,sdmxd,stream,tsioc,twaapi,wd,who,wikidata
   changed: agrelon,cnt,co,sdo,yago
