@@ -1,99 +1,122 @@
-20130926 (1132 prefixes)
-  fixed documentation
-  new format 'json' for JSON-LD
+20130926 2013-09-26 (1132 prefixes)
+ - fixed documentation
+ - new format 'json' for JSON-LD
 
-20130924 (1132 prefixes)
-  added: alchemy,archdesc,cosmo,cro,dbpo,dt,frbrer,frsad,gndo,icane,ludo,oj,oliasystem,orca,saif,sdmxa,sdmxd,stream,tsioc,twaapi,wd,who,wikidata
-  changed: agrelon,cnt,co,sdo,yago
+20130924 2013-09-24 (1132 prefixes)
+ - added:   alchemy,archdesc,cosmo,cro,dbpo,dt,frbrer,frsad,gndo,icane,ludo,oj,
+            oliasystem,orca,saif,sdmxa,sdmxd,stream,tsioc,twaapi,wd,who,
+            wikidata
+ - changed: agrelon,cnt,co,sdo,yago
 
-  made REVERSE reproducible
-  improved command line client
+ - made REVERSE reproducible
+ - improved command line client
 
-20130816 (1109 prefixes)
-  added: fea,penis,scms,sdo,wapp
+20130816 2013-08-16 (1109 prefixes)
+ - added:   fea,penis,scms,sdo,wapp
 
-  improved update process
-  remove .bak files
+ - improved update process
+ - remove .bak files
 
-20130812 (1104 prefixes)
-  added: lldr,up
-  changed: copyright
-20130802 (1102 prefixes)
-  added: algo,bsb,centrifuge,cex,cf,cidoc,crtv,dbc,dbnary,dbpr,dbt,dctypes,dis,dvia,ebu,ecb,ecpo,exterms,frapo,geof,geofla,gfo,hifm,httpm,iot,itsrdf,kbp,l4lod,laabs,locwd,mods,namespaces,nif,nsl,odcs,oecd,omn,opmw,oslc,pam,penn,pkgsrc,ple,poste,premis,prolog,qrl,qvoc,radion,rdarole,rdf123,reve,rlno,rlnr,rlog,roevo,roterms,sci,sem,site,stac,stats,wf4ever,wfm,wfs,wikterms,wl,won,worldbank
-  changed: b2bo,biocore,cito,dita,dso,lgd,lv,oa,osr,pr,req,ro,voaf
+20130812 2013-08-12 (1104 prefixes)
+ - added:   lldr,up
+ - changed: copyright
 
-  fixed bug in test of RDF::NS::Trine (https://github.com/nichtich/RDF-NS/issues/4)
-  rdfns now emits plain URLs without format
+20130802 2013-08-02 (1102 prefixes)
+ - added:   algo,bsb,centrifuge,cex,cf,cidoc,crtv,dbc,dbnary,dbpr,dbt,dctypes,
+            dis,dvia,ebu,ecb,ecpo,exterms,frapo,geof,geofla,gfo,hifm,httpm,
+            iot,itsrdf,kbp,l4lod,laabs,locwd,mods,namespaces,nif,nsl,odcs,oecd,
+            omn,opmw,oslc,pam,penn,pkgsrc,ple,poste,premis,prolog,qrl,qvoc,
+            radion,rdarole,rdf123,reve,rlno,rlnr,rlog,roevo,roterms,sci,sem,
+            site,stac,stats,wf4ever,wfm,wfs,wikterms,wl,won,worldbank
+ - changed: b2bo,biocore,cito,dita,dso,lgd,lv,oa,osr,pr,req,ro,voaf
 
-20130402 (1033 prefixes)
-  added: dcm,gnvc,occult,pizza,role
-  changed: w3po
+ - fixed bug in test of RDF::NS::Trine (https://github.com/nichtich/RDF-NS/issues/4)
+ - rdfns now emits plain URLs without format
 
-  fixed bug in PREFIXES, caused by returning from an each-loop
+20130402 2013-04-02 (1033 prefixes)
+ - added:   dcm,gnvc,occult,pizza,role
+ - changed: w3po
 
-20130327 (1028 prefixes)
-  added: agls,agrelon,aigp,aos,api,being,bf,bif,biotop,biro,cb,cgov,city,cold,coll,comm,coun,cpa,crsw,csp,ctorg,dbtont,dcite,dcndl,deo,dl,doco,dqm,dr,drm,ds,dso,ecos,edgar,elec,emp,ep,fcp,fowl,gadm,gastro,geod,geosp,gnm,graffle,graves,gso,infor,inno,iol,itsmo,lcy,lh,lingvo,lmm1,lmm2,lsc,mads,mds,meb,mil,mime,moac,mrel,msr,mvco,ntag,nyt,obsm,odapp,odpart,odv,oecc,ontopic,opl,opmo,oprovo,ordf,osadm,osgeom,osp,osr,osspr,ostop,part,passim,prvt,pso,ptop,pwo,quty,raul,rdafrbr,rdag1,rdag3,rdarel,semio,seq,situ,snarm,spt,swpo,tao,te,tis,trait,turismo,tvc,vocab,vrank,wlo,wsl,xmp,zoomaterms
-  changed: acm,br,crm,disco,dita,food,idemo,lib,ps,s2s,sc,sec
-20130208 (914 prefixes)
-  added: adms,aersv,agg,apivc,arpfo,asn,atomrdf,b2bo,bd,bing,biopax,bne,bp,bte,cidoccrm,daisy,dce,dco,dcr,disco,dita,dnb,dsp,dssn,ekaw,ens,eseduc,fd,food,fos,gawd,genea,geocontext,gsp,gxa,health,hgnc,icaltzd,idemo,igeo,jjd,kdo,l4a,laposte,ldp,lex,lyou,marshall,md,nxp,oa,oarj,oax,osn,owltime,particip,person,photoshop,pingback,prefix,pronom,qa,qud,rad,rov,ssso,strdf,tisc,uco,viaf,visit,w3po,wn20,xmls
-  changed: cv,geoes,media,metalex,nfo,prv,xro
+ - fixed bug in PREFIXES, caused by returning from an each-loop
 
-20120917 (840 prefixes)
-  added: category,ero,interval
+20130327 2013-03-27 (1028 prefixes)
+ - added:   agls,agrelon,aigp,aos,api,being,bf,bif,biotop,biro,cb,cgov,city,
+            cold,coll,comm,coun,cpa,crsw,csp,ctorg,dbtont,dcite,dcndl,deo,dl,
+            doco,dqm,dr,drm,ds,dso,ecos,edgar,elec,emp,ep,fcp,fowl,gadm,
+            gastro,geod,geosp,gnm,graffle,graves,gso,infor,inno,iol,itsmo,lcy,
+            lh,lingvo,lmm1,lmm2,lsc,mads,mds,meb,mil,mime,moac,mrel,msr,mvco,
+            ntag,nyt,obsm,odapp,odpart,odv,oecc,ontopic,opl,opmo,oprovo,ordf,
+            osadm,osgeom,osp,osr,osspr,ostop,part,passim,prvt,pso,ptop,pwo,
+            quty,raul,rdafrbr,rdag1,rdag3,rdarel,semio,seq,situ,snarm,spt,swpo,
+            tao,te,tis,trait,turismo,tvc,vocab,vrank,wlo,wsl,xmp,zoomaterms
+ - changed: acm,br,crm,disco,dita,food,idemo,lib,ps,s2s,sc,sec
 
-20120905 (837 prefixes)
-  added: flow,osmsemnet,wfprov
+20130208 2013-02-08 (914 prefixes)
+ - added:   adms,aersv,agg,apivc,arpfo,asn,atomrdf,b2bo,bd,bing,biopax,bne,bp,
+            bte,cidoccrm,daisy,dce,dco,dcr,disco,dita,dnb,dsp,dssn,ekaw,ens,
+            eseduc,fd,food,fos,gawd,genea,geocontext,gsp,gxa,health,hgnc,
+            icaltzd,idemo,igeo,jjd,kdo,l4a,laposte,ldp,lex,lyou,marshall,md,
+            nxp,oa,oarj,oax,osn,owltime,particip,person,photoshop,pingback,
+            prefix,pronom,qa,qud,rad,rov,ssso,strdf,tisc,uco,viaf,visit,w3po,
+            wn20,xmls
+ - changed: cv,geoes,media,metalex,nfo,prv,xro
 
-  new subclass RDF::NS::URIS to get URI objects
+20120917 2012-09-17 (840 prefixes)
+ - added:   category,ero,interval
 
-20120829 (834 prefixes)
-  added: mpeg7,myprefix,ngeoi,okg
+20120905 2012-09-05 (837 prefixes)
+ - added:   flow,osmsemnet,wfprov
 
-20120827 (830 prefixes)
-  added:   acco,admssw,aers,arg,br,cao,cogs,dive,dpl,eprints,eumida,germplasm,
-           intervals,lctr,lemon,library,life,marl,muni,ncbitaxon,no,npgd,npgg,
-           npgx,open,pav,pkmn,pml,poder,pol,r4ta,rda,rdagr1,rssynd,sdgp,set,sgv,
-           spif,tcga
-  changed: acm,crm,prism,prv,s4ac
+ - new subclass RDF::NS::URIS to get URI objects
 
-  new methods PREFIX,PREFIXES, and REVERSE
+20120829 2012-08-29 (834 prefixes)
+ - added:   mpeg7,myprefix,ngeoi,okg
 
-20120521 (791 prefixes)
-  added:   d2r,efo,enhancer,fcm,fise,fl,fls,oboe,pccz,rdrel,rec54
+20120827 2012-08-27 (830 prefixes)
+ - added:   acco,admssw,aers,arg,br,cao,cogs,dive,dpl,eprints,eumida,germplasm,
+            intervals,lctr,lemon,library,life,marl,muni,ncbitaxon,no,npgd,npgg,
+            npgx,open,pav,pkmn,pml,poder,pol,r4ta,rda,rdagr1,rssynd,sdgp,set,
+            sgv,spif,tcga
+ - changed: acm,crm,prism,prv,s4ac
 
-20120426 (780 prefixes)
-  added:   aerols,carfo,cerif,cheminf,cts2,example,func,geom,gldp,goef,hg,ipad,
-           isbd,kupkb,lexvo,lr,lv,marcrel,metalex,mohammad,npg,nsogi,oac,ogorg,
-           omv,onssprel,ospost,pay,pf,pne,prism21,pro,prviv,ql,r2rml,rating,
-           recipe,scufl2,ssn,vapour,vsws,wbc,wbp,wkd,wp,wscaim,xkos
-  changed: linkedct,nfo,pc,prov,xhtml
+ - new methods PREFIX,PREFIXES, and REVERSE
 
-20120124 (733 prefixes)
-  added:   arecipe,calli,cis,datafaqs,db,dwc,ends,eunis,georss,identity,italy,
-           jita,moby,np,ocd,places,pna,protegedc,swpatho,transit,voidp,vsr,
-           wfdesc,wikipedia
-  changed: daiaserv,media,nfo
+20120521 2012-05-21 (791 prefixes)
+ - added:   d2r,efo,enhancer,fcm,fise,fl,fls,oboe,pccz,rdrel,rec54
 
-20111208 (716 prefixes)
-  added:   calli,dwc,eunis,georss,pna,swpatho,voidp
+20120426 2012-04-26 (780 prefixes)
+ - added:   aerols,carfo,cerif,cheminf,cts2,example,func,geom,gldp,goef,hg,ipad
+            isbd,kupkb,lexvo,lr,lv,marcrel,metalex,mohammad,npg,nsogi,oac,ogorg
+            omv,onssprel,ospost,pay,pf,pne,prism21,pro,prviv,ql,r2rml,rating
+            recipe,scufl2,ssn,vapour,vsws,wbc,wbp,wkd,wp,wscaim,xkos
+ - changed: linkedct,nfo,pc,prov,xhtml
 
-  introduced blank nodes in RDF::NS::Trine
-  extended command line tool to expand QNames
+20120124 2012-01-24 (733 prefixes)
+ - added:   arecipe,calli,cis,datafaqs,db,dwc,ends,eunis,georss,identity,italy,
+            jita,moby,np,ocd,places,pna,protegedc,swpatho,transit,voidp,vsr,
+            wfdesc,wikipedia
+ - changed: daiaserv,media,nfo
 
-20111124 (709 prefixes)
-  added:   gnd,grs,htir,infosys,muto,omapi,prf,webbox
-  changed: commerce
-  removed: uri
+20111208 2011-12-08 (716 prefixes)
+ - added:   calli,dwc,eunis,georss,pna,swpatho,voidp
 
-  modified command line tool option syntax
+ - introduced blank nodes in RDF::NS::Trine
+ - extended command line tool to expand QNames
 
-20111102 (702 prefixes) 
-  new command line tool 'rdfns'
-  added:   vsw
+20111124 2011-11-24 (709 prefixes)
+ - added:   gnd,grs,htir,infosys,muto,omapi,prf,webbox
+ - changed: commerce
+ - removed: uri
 
-20111031 (701 prefixes)
-  first release at CPAN
-  added:   daiaserv,vvo
+ - modified command line tool option syntax
 
-20111028
-  first full-featured version
+20111102 2011-10-31 (702 prefixes)
+ - new command line tool 'rdfns'
+ - added:   vsw
+
+20111031 2011-10-31 (701 prefixes)
+ - first release at CPAN
+ - added:   daiaserv,vvo
+
+20111028 2011-10-28
+ - first full-featured version
