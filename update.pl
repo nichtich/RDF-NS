@@ -5,6 +5,7 @@ use warnings;
 use LWP::Simple qw(mirror);
 use RDF::NS;
 use File::Temp;
+use Text::Wrap;
 
 # make sure, git repository is clean
 my $dirty = `git status --porcelain`;
@@ -22,6 +23,7 @@ die "share/prefix.cc is empty" unless %$cur;
 # get new current datestamp
 my @t = gmtime;
 my $new_version = sprintf '%4d%02d%02d', $t[5]+1900, $t[4]+1, $t[3];
+my $new_date    = sprintf '%4d-%02d%-02d', $t[5]+1900, $t[4]+1, $t[3];
 die "$new_version is not new" if $new_version eq $cur_version;
 
 # download new prefixes
@@ -46,11 +48,16 @@ foreach my $change (qw(create delete update)) {
     }
 }
 
-my (@log) = "$new_version (" . $new->COUNT . " prefixes)"; 
+my (@log) = "$new_version $new_date (" . $new->COUNT . " prefixes)"; 
 
-push @log, "  added: " . join(",",@{$diff->{create}}) if @{$diff->{create}};
-push @log, "  removed: " . join(",",@{$diff->{delete}}) if @{$diff->{delete}};
-push @log, "  changed: " . join(",",@{$diff->{update}}) if @{$diff->{update}};
+sub prefix_list {
+    my ($label, $list) = @_;
+    return wrap(" - $label "," " x 12, join ' ', @$list);
+}
+
+push @log, prefix_list("added:  ",$diff->{create}) if @{$diff->{create}};
+push @log, prefix_list("removed:",$diff->{delete}) if @{$diff->{delete}};
+push @log, prefix_list("changed:",$diff->{update}) if @{$diff->{update}};
 
 foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm lib/RDF/NS/URIS.pm README.md)) {
     print "$cur_version => $new_version in $file\n";
