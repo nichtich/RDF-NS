@@ -68,7 +68,7 @@ foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm lib/RDF/NS/URIS.
     }
 }
 
-my $msg = `git log --pretty=format:"  %s" $cur_version..`;
+my $msg = `git log --pretty=format:" - %s" $cur_version..`;
 
 do {
     print "prepend modifications to Changes\n"; 

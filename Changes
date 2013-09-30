@@ -1,3 +1,8 @@
+20130930 2013-0930 (1132 prefixes)
+
+ - fix Changes creation via update.pl
+ - fix Changes to comply w/CPAN::Changes::Spec
+
 20130926 2013-09-26 (1132 prefixes)
 
  - fixed documentation
