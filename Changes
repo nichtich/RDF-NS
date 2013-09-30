@@ -1,5 +1,6 @@
 20130930 2013-0930 (1132 prefixes)
 
+ - new rdfns command line argument --version
  - fix Changes creation via update.pl
  - fix Changes to comply w/CPAN::Changes::Spec
 

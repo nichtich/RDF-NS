@@ -18,6 +18,7 @@ sub run {
     my $version = 'any';
 
     return $self->usage if !@ARGV or $ARGV[0] =~ /^(-[?h]|--help)$/;
+    return $self->version if $ARGV[0] =~ /^(-v|--version)$/;
 
     foreach my $a (@ARGV) {
         if ( $a =~ /^(\d{8})$/ ) {
@@ -58,6 +59,7 @@ sub usage {
 USAGE: rdfns { [YYYYMMDD] ( <prefix[es]>[.format] | prefix:name | URL ) }+
 
   formats: txt, sparql, ttl, n3, xmlns, json, beacon, prefix
+  options: --help | --version
  
   examples:
     rdfns 20111102 foaf,owl.ttl
@@ -66,6 +68,12 @@ USAGE: rdfns { [YYYYMMDD] ( <prefix[es]>[.format] | prefix:name | URL ) }+
     rdfns http://www.w3.org/2003/01/geo/wgs84_pos#
     rdfns wgs.prefix
 USAGE
+    0;
+}
+
+sub version {
+    print $RDF::NS::VERSION . "\n";
+    0;
 }
 
 1;

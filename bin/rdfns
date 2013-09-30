@@ -26,6 +26,9 @@ exit App::rdfns->new->run(@ARGV);
     # show all options and some examples
     $ rdfns --help
 
+    # show version
+    $ rdfns --version
+
 =head1 FORMATS
 
 =over
