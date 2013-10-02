@@ -286,7 +286,7 @@ The command line client L<rdfns> is installed automatically with this module:
 This module does not require L<RDF::Trine>, which is recommended nevertheless.
 (at least version 0.140).  If you prefer RDF::NS to return instances of 
 L<RDF::Trine::Node::Resource> instead of plain strings, use L<RDF::NS::Trine>.
-<RDF::NS::URIS> is a similar module that returns instances of L<URI>.
+L<RDF::NS::URIS> is a similar module that returns instances of L<URI>.
 
 The code repository of this module contains an
 L<update script|https://github.com/nichtich/RDF-NS/blob/master/update.pl>
@@ -317,7 +317,7 @@ instance C<< $ns->foaf_Person >> returns C<http://xmlns.com/foaf/0.1/Person>.
 =head2 uri ( $short | "<$URI>" )
 
 Expand a prefixed URI, such as C<foaf:Person> or C<foaf_Person>. Alternatively 
-you can expand prefixed URIs with method calls, such as C<$ns-I<gt>foaf_Person>.
+you can expand prefixed URIs with method calls, such as C<< $ns->foaf_Person >>.
 If you pass an URI wrapped in C<E<lt>> and C<E<gt>>, it will not be expanded
 but returned as given.
 
