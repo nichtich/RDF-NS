@@ -33,7 +33,8 @@ sub new {
     croak "prefix file or date not found: $from"
         unless -f $from;
 
-    my $ns = { };
+    my $self = bless { }, (ref($class) || $class);
+
     open (my $fh, '<', $from) or croak "failed to open $from";
     foreach (<$fh>) {
         chomp;
@@ -41,22 +42,28 @@ sub new {
         my ($prefix, $namespace, $date) = split "\t", $_;
         last if $date and $at ne 'any' and $date > $at;
 
-        if ( $prefix =~ /^(isa|can|new|uri)$/ ) {
-            warn "Cannot support prefix '$prefix'" if $warn;
-            next;
-        } elsif ( $prefix =~ /^[a-z][a-z0-9]*$/ ) {
-            if ( $namespace =~ /^[a-z][a-z0-9]*:[^"<>]*$/ ) {
-                $ns->{$prefix} = $namespace;
-            } elsif( $warn ) {
-                warn "Skipping invalid $prefix namespace $namespace";
-            }
-        } elsif ( $warn ) {
-            warn "Skipping unusual prefix '$prefix'";
-        }
+        $self->SET( $prefix => $namespace, $warn );
     }
     close($fh);
 
-    bless $ns, (ref($class) || $class);
+    $self;
+}
+
+sub SET {
+    my ($self, $prefix, $namespace, $warn) = @_;
+
+    if ( $prefix =~ /^(isa|can|new|uri)$/ ) {
+        carp "Cannot support prefix '$prefix'" if $warn;
+        next;
+    } elsif ( $prefix =~ /^[a-z][a-z0-9]*$/ ) {
+        if ( $namespace =~ /^[a-z][a-z0-9]*:[^"<>]*$/ ) {
+            $self->{$prefix} = $namespace;
+        } elsif( $warn ) {
+            carp "Skipping invalid $prefix namespace $namespace";
+        }
+    } elsif ( $warn ) {
+        carp "Skipping unusual prefix '$prefix'";
+    }
 }
 
 *LOAD = *new;
@@ -366,6 +373,11 @@ of the first prefix that was found. Prefixes can be passed as single arguments
 or separated by commas, vertical bars, and spaces.
 
 =head1 INTERNAL METHODS
+
+=head2 SET ( $prefix => $namespaces [, $warn ] )
+
+Set or add a namespace mapping. Errors are ignored unless enabled as warnings
+with the third argument.
 
 =head2 MAP ( $code [, prefix[es] ] )
 
