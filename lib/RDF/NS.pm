@@ -58,12 +58,15 @@ sub SET {
     } elsif ( $prefix =~ /^[a-z][a-z0-9]*$/ ) {
         if ( $namespace =~ /^[a-z][a-z0-9]*:[^"<>]*$/ ) {
             $self->{$prefix} = $namespace;
+            return 1;
         } elsif( $warn ) {
             carp "Skipping invalid $prefix namespace $namespace";
         }
     } elsif ( $warn ) {
         carp "Skipping unusual prefix '$prefix'";
     }
+
+    return;
 }
 
 *LOAD = *new;
@@ -377,7 +380,7 @@ or separated by commas, vertical bars, and spaces.
 =head2 SET ( $prefix => $namespaces [, $warn ] )
 
 Set or add a namespace mapping. Errors are ignored unless enabled as warnings
-with the third argument.
+with the third argument. Returns true if the mapping was successfully added.
 
 =head2 MAP ( $code [, prefix[es] ] )
 
