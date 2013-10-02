@@ -1,3 +1,8 @@
+20131002 2013-102  (1135 prefixes)
+ - added:   cdtype fincaselaw finlaw
+
+ - new method SET to add/modify mappings
+
 20130930 2013-0930 (1132 prefixes)
 
  - new rdfns command line argument --version

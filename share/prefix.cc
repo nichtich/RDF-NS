@@ -1183,3 +1183,6 @@ wd	http://www.wikidata.org/entity/	20130924
 who	http://www.who.int/vocab/ontology#	20130924
 wikidata	http://www.wikidata.org/entity/	20130924
 yago	http://yago-knowledge.org/resource/	20130924
+cdtype	http://purl.org/cld/cdtype/	20131002
+fincaselaw	http://purl.org/finlex/schema/oikeus/	20131002
+finlaw	http://purl.org/finlex/schema/laki/	20131002
