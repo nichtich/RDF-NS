@@ -1,3 +1,11 @@
+20131115 2013-1115 (1156 prefixes)
+ - added:   amalgame camelot conf crv csm curr dbrc dbyago frad gq hxl mp
+            ogbd olad ox pat pext qb4o refe swperson ub
+ - changed: dso frsad gnd
+
+ - documentation
+ - add return value of method SET
+
 20131002 2013-102  (1135 prefixes)
  - added:   cdtype fincaselaw finlaw
 

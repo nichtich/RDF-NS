@@ -54,7 +54,6 @@ sub SET {
 
     if ( $prefix =~ /^(isa|can|new|uri)$/ ) {
         carp "Cannot support prefix '$prefix'" if $warn;
-        next;
     } elsif ( $prefix =~ /^[a-z][a-z0-9]*$/ ) {
         if ( $namespace =~ /^[a-z][a-z0-9]*:[^"<>]*$/ ) {
             $self->{$prefix} = $namespace;
@@ -239,8 +238,8 @@ sub UPDATE {
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20131002';              # check at compile time
-  my $ns = RDF::NS->new('20131002');   # check at runtime
+  use RDF::NS '20131115';              # check at compile time
+  my $ns = RDF::NS->new('20131115');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person

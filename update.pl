@@ -6,6 +6,7 @@ use LWP::Simple qw(mirror);
 use RDF::NS;
 use File::Temp;
 use Text::Wrap;
+$Text::Wrap::unexpand=0; # don't insert tabs
 
 # make sure, git repository is clean
 my $dirty = `git status --porcelain`;
