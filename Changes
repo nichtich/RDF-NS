@@ -1,3 +1,29 @@
+20140901 2014-091  (1409 prefixes)
+ - added:   aat accom acrt agrd agro app asgv aws babelnet basic bbccms
+            bbccore bbcprov bco bevon bihap bis bk bwb call citof cjr cmd
+            cmdi cmdm contsem csv dbpedia2 dbug dcoid defns delta diag
+            dicom dn dogont dpd dq dsn ebucore ec ecrm employee erce esadm
+            escjr estatwrap estrn eurlex evident ext fam fao fbgeo fcs fma
+            form fp3 frb friends ftcontent gaf gcis geop geos geosparql
+            geovoid gf gm gts gvp h2o hdo hlygt hr hydra ignf ilap imf
+            irstea irsteaont iso isothes itm jp1 kai keys kml koly l2sp
+            language lda ldr lexcz lexicon lexinfo lfov li lime limo ling
+            lio lmf locah location locn lofv loted mammal maso mb metadata
+            mm mmt msm mt my naval navm ndl nxs oad oan od odapps odrl odrs
+            of oh oils olac olac11 olca om omdoc onisep ont ontosec onyx op
+            openskos oplacl oplprod oplres origins oslo parl pattern pco
+            physo pic pkm plo pnc pni pnt pproc provone psys purl pvcs qu
+            rdaa rdac rdae rdag2 rdai rdam rdarel2 rdau rdaw rdl reegle
+            roadmap rso ru ruto rvl sad sam sao sbench scip scoro security
+            ses sf shex shw siocserv skos08 spcm spdx spfood sql sro sru
+            stanford static stories swpm swrcfe tac tavprov taxon tddo tgn
+            thors tm topo travel trig tw uis ulan un unspsc uri4uri va vext
+            vgo videogame vin viso vmm voidext voidwh vra wfn whisky wi
+            wiki wikim wikimedia wn30 xml xsi xslopm zr
+ - changed: dblp dco dcq ecb fabio govwild http lemon marl mf muni nyt sdo
+            sparql ssn
+
+
 20131205 2013-125  (1170 prefixes)
  - added:   bbc bibframe bm emoca emotion limoo mged mocanal muldicat nidm
             paia pubmed service tr
