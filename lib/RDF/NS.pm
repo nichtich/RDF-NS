@@ -6,6 +6,7 @@ package RDF::NS;
 use Scalar::Util qw(blessed);
 use File::ShareDir;
 use Carp;
+use RDF::SN;
 
 our $AUTOLOAD;
 our $FORMATS = qr/ttl|n(otation)?3|sparql|xmlns|txt|beacon|json/;
@@ -104,15 +105,7 @@ sub PREFIXES {
 }
 
 sub REVERSE {
-    my $self = shift;
-    my $lookup = { };
-    while ( my ($prefix, $namespace) = each %$self ) {
-        my $has = $lookup->{$namespace};
-        if (!$has or length($has) > length($prefix) or $has ge $prefix) {
-            $lookup->{$namespace} = $prefix;
-        }
-    }
-    return $lookup;
+    RDF::SN->new($_[0]);
 }
 
 sub TTL {
@@ -303,12 +296,12 @@ specific version, as mappings can change, violating backwards compatibility.
 Supported options include C<warn> to enable warnings and C<at> to specify a
 date. 
 
-=head2 I<prefix>
+=head2 "I<prefix>"
 
 Returns the namespace for I<prefix> if namespace prefix is defined. For
 instance C<< $ns->foaf >> returns C<http://xmlns.com/foaf/0.1/>.
 
-=head2 I<prefix_name>
+=head2 "I<prefix_name>"
 
 Returns the namespace plus local name, if namespace prefix is defined. For
 instance C<< $ns->foaf_Person >> returns C<http://xmlns.com/foaf/0.1/Person>.
@@ -363,9 +356,8 @@ Get all known prefixes of a namespace URI.
 
 =head2 REVERSE
 
-Create a lookup hash from namespace URIs to prefixes. If multiple prefixes
-exist, the shortes is be used. If multiple prefixes with same length exist, the
-first in alphabetical order is used.
+Calling C<< $ns->REVERSE >> is equal to C<< RDF::SN->new($ns) >>. See
+L<RDF::SN> for details.
 
 =head2 SELECT ( prefix[es] )
 

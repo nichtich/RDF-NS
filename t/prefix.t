@@ -20,4 +20,11 @@ is $rev->{$rdfs}, 'rdfs', 'reverse';
 is $rev->{$dc}, 'dc', 'reverse';
 is $rev->{'http://www.w3.org/2003/01/geo/wgs84_pos#'}, 'geo', 'reverse';
 
+is $rev->qname($ns->rdfs_type), 'rdfs:type', 'QNAME';
+is $rev->qname($ns->rdfs), 'rdfs:', 'QNAME';
+
+$rev = RDF::SN->new('20140908');
+is $rev->qname($ns->dc11, '_'), 'dc_', 'QNAME';
+is $rev->qname_($ns->dc11), 'dc_', 'QNAME';
+
 done_testing;
