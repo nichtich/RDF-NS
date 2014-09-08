@@ -1480,3 +1480,8 @@ xml	http://www.w3.org/XML/1998/namespace/	20140901
 xsi	http://www.w3.org/2001/XMLSchema-instance#	20140901
 xslopm	http://purl.org/net/opmv/types/xslt#	20140901
 zr	http://explain.z3950.org/dtd/2.0/	20140901
+abs	http://abs.270a.info/dataset/	20140908
+article	http://ogp.me/ns/article#	20140908
+cdc	http://www.contextdatacloud.org/resource/	20140908
+opencyc	http://sw.opencyc.org/concept/	20140908
+smg	http://ns.cerise-project.nl/energy/def/cim-smartgrid#	20140908
