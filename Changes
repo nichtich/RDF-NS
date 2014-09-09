@@ -135,7 +135,7 @@
             sgv spif tcga
  - changed: acm crm prism prv s4ac
 
- - new methods PREFIX PREFIXES  and REVERSE
+ - new methods PREFIX PREFIXES and REVERSE
 
 20120521 2012-05-21 (791 prefixes)
  - added:   d2r efo enhancer fcm fise fl fls oboe pccz rdrel rec54

@@ -15,20 +15,21 @@ sub new {
 sub run {
     my ($self, @ARGV) = @_;
     my $format = '';
-    my $version = 'any';
 
     return $self->usage if !@ARGV or $ARGV[0] =~ /^(-[?h]|--help)$/;
     return $self->version if $ARGV[0] =~ /^(-v|--version)$/;
 
+    my $ns = RDF::NS->new;
+    my $sn = $ns->REVERSE;
+
     foreach my $a (@ARGV) {
-        if ( $a =~ /^(\d{8})$/ ) {
-            $version = $a;
+        if ( $a =~ /^([0-9]{8})$/ ) {
+            $ns = RDF::NS->new($a);
+            $sn = $ns->REVERSE;
             next;
         }
-        my $ns = RDF::NS->new($version);
-        my $rev = $ns->REVERSE;
         if ( $a =~ qr{^https?://} ) {
-            my $qname = $rev->qname($a);
+            my $qname = $sn->qname($a);
             if ($qname) {
                 $qname =~ s/:$//;
                 say $qname;
@@ -39,7 +40,7 @@ sub run {
             my $f = $1;
             if ( $f eq 'prefix' ) {
                print map { "$_\n" if defined $_ } map {
-                   $rev->{$_}
+                   $sn->{$_}
                } $ns->FORMAT( $format, $a );
                next;
             } elsif ( $f =~ $RDF::NS::FORMATS ) {

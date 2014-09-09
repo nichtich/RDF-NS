@@ -14,11 +14,14 @@ our $FORMATS = qr/ttl|n(otation)?3|sparql|xmlns|txt|beacon|json/;
 our $DATE_REGEXP = qr/^([0-9]{4})-?([0-9][0-9])-?([0-9][0-9])$/;
 
 sub new {
-    my ($class, $from, %options) = @_;
+    my $class = shift;
+    my $from  = @_ % 2 ? shift : 1;
+    my %options = @_;
 
-    $from ||= 'any';
     my $at   = $options{at} || 'any';
     my $warn = $options{'warn'};
+    $from = $options{from} if exists $options{from};
+    $from = 'any' if !$from or $from eq 1;
 
     if ( $from =~ $DATE_REGEXP ) {
         $at   = "$1$2$3";
@@ -26,7 +29,7 @@ sub new {
     } elsif( $at =~ $DATE_REGEXP ) {
         $at   = "$1$2$3";
     } elsif ( $at !~ 'any' ) {
-        croak "RDF::NS expects a date as YYYY-MM-DD"; 
+        croak "RDF::NS expects 'any', '1' or a date as YYYY-MM-DD"; 
     }
 
     $from = File::ShareDir::dist_file('RDF-NS', "prefix.cc" )
@@ -288,13 +291,13 @@ to download the current prefix-namespace mappings from L<http://prefix.cc>.
 
 In most cases you only need the following lowercase methods.
 
-=head2 new ( $file_or_date [, %options ] )
+=head2 new ( [ $file_or_date ] [ %options ] )
 
 Create a new namespace mapping from a selected file or date. The special string
-C<"any"> can be used to get the newest mapping, but you should better select a
-specific version, as mappings can change, violating backwards compatibility.
-Supported options include C<warn> to enable warnings and C<at> to specify a
-date. 
+C<"any"> or the value C<1> can be used to get the newest mapping, but you
+should better select a specific version, as mappings can change, violating
+backwards compatibility.  Supported options include C<warn> to enable warnings
+and C<at> to specify a date. 
 
 =head2 "I<prefix>"
 
