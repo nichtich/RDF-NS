@@ -1,3 +1,10 @@
+20140909 2014-099  (1415 prefixes)
+ - added:   opllic
+
+ - improved test coverage (close #5)
+ - support reverse lookup in rdfns (close #9)
+ - test Perl 5.20
+
 20140908 2014-098  (1414 prefixes)
  - added:   abs article cdc opencyc smg
  - new module RDF::SN to abbreviate URIs

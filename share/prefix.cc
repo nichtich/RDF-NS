@@ -1485,3 +1485,4 @@ article	http://ogp.me/ns/article#	20140908
 cdc	http://www.contextdatacloud.org/resource/	20140908
 opencyc	http://sw.opencyc.org/concept/	20140908
 smg	http://ns.cerise-project.nl/energy/def/cim-smartgrid#	20140908
+opllic	http://www.openlinksw.com/ontology/licenses#	20140909
