@@ -32,5 +32,5 @@ documentation for more information.
 The source code of RDF::NS is available at https://github.com/nichtich/RDF-NS/
 with releases at http://search.cpan.org/dist/RDF-NS/.
 
-[![Build Status](https://travis-ci.org/nichtich/RDF-NS.png)](https://travis-ci.org/nichtich/RDF-NS)
-[![Coverage Status](https://coveralls.io/repos/nichtich/RDF-NS/badge.png?branch=master)](https://coveralls.io/r/nichtich/RDF-NS?branch=master)
+[![Build Status](https://travis-ci.org/nichtich/RDF-NS.svg?branch=master)](https://travis-ci.org/nichtich/RDF-NS)
+[![Coverage Status](https://img.shields.io/coveralls/nichtich/RDF-NS.svg)](https://coveralls.io/r/nichtich/RDF-NS?branch=master)

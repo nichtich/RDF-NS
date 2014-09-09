@@ -393,6 +393,8 @@ L<RDF::Trine::Namespace>, L<RDF::Trine::NamespaceMap>, L<URI::NamespaceMap>,
 L<RDF::Prefixes>, L<RDF::Simple::NS>, L<RDF::RDFa::Parser::Profile::PrefixCC>,
 L<Class::RDF::NS>, L<XML::Namespace>, L<XML::CommonNS> etc.
 
-=encoding utf8
+=for HTML <a href="https://travis-ci.org/nichtich/RDF-NS"><img src="https://travis-ci.org/nichtich/RDF-NS.svg?branch=master"></a>
+
+=for HTML <a href="https://coveralls.io/r/nichtich/RDF-NS?branch=master"><img src="https://img.shields.io/coveralls/nichtich/RDF-NS.svg"></a>
 
 =cut

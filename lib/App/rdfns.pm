@@ -26,16 +26,18 @@ sub run {
             next;
         }
         my $ns = RDF::NS->new($version);
-        my $rev;
+        my $rev = $ns->REVERSE;
         if ( $a =~ qr{^https?://} ) {
-            $rev ||= $ns->REVERSE;
-            say $rev->{$a} if $rev->{$a};
+            my $qname = $rev->qname($a);
+            if ($qname) {
+                $qname =~ s/:$//;
+                say $qname;
+            }
         } elsif ( $a =~ /:/ ) {
             print map { $ns->URI($_)."\n" } split(/[|, ]+/, $a);
         } elsif ( $a =~ s/\.([^.]+)$// ) {
             my $f = $1;
             if ( $f eq 'prefix' ) {
-               $rev ||= $ns->REVERSE;
                print map { "$_\n" if defined $_ } map {
                    $rev->{$_}
                } $ns->FORMAT( $format, $a );
@@ -66,6 +68,7 @@ USAGE: rdfns { [YYYYMMDD] ( <prefix[es]>[.format] | prefix:name | URL ) }+
     rdfns foaf.xmlns foaf.n3
     rdfns rdfs:seeAlso
     rdfns http://www.w3.org/2003/01/geo/wgs84_pos#
+    rdfns http://purl.org/dc/elements/1.1/title
     rdfns wgs.prefix
 USAGE
     0;
