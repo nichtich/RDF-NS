@@ -27,4 +27,7 @@ $rev = RDF::SN->new('20140908');
 is $rev->qname($ns->dc11, '_'), 'dc_', 'QNAME';
 is $rev->qname_($ns->dc11), 'dc_', 'QNAME';
 
+# check deterministic reverse lookup
+is($ns->REVERSE->qname('http://www.w3.org/2001/XMLSchema#'), 'xs:') for 1..10;
+
 done_testing;

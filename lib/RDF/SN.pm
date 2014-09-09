@@ -14,13 +14,17 @@ sub new {
     }
 
     my $self = bless { }, $class;
+    
     while ( my ($prefix, $namespace) = each %$ns ) {
         my $has = $self->{$namespace};
-        if (!$has or length($has) > length($prefix) or $has ge $prefix) {
+        if (!$has || (length($has) > length($prefix))
+                  || (length($has) == length($prefix) and $has ge $prefix)
+        ) {
             $self->{$namespace} = $prefix;
         }
     }
-    return $self;
+
+    $self;
 }
 
 sub qname {
