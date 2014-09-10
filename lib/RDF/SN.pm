@@ -28,11 +28,10 @@ sub new {
 }
 
 sub qname {
-    my ($self, $uri, $sep) = @_;
-    $sep ||= ':';
+    my ($self, $uri) = @_;
 
     if ($self->{$uri}) {
-        return $self->{$uri}.$sep;
+        return wantarray ? ($self->{$uri}, '') : $self->{$uri}.':';
     }
 
     # regexpes copied from RDF::Trine::Node::Resource
@@ -45,7 +44,7 @@ sub qname {
         my $ln = $1;
         my $ns = substr($uri, 0, length($uri)-length($ln));
         if ($self->{$ns}) {
-            return $self->{$ns}.$sep.$ln;
+            return(wantarray ? ($self->{$ns},$ln) : $self->{$ns}.':'.$ln);
         }
     }
 
@@ -53,7 +52,11 @@ sub qname {
 }
 
 sub qname_ {
-    $_[0]->qname($_[1],'_');
+    if(wantarray) {
+        return $_[0]->qname($_[1]);
+    } else {
+        return join '_', $_[0]->qname($_[1]);
+    }
 }
 
 =head1 SYNOPSIS
@@ -73,10 +76,10 @@ Create a lookup hash from a mapping hash of namespace URIs to prefixes
 (L<RDF::NS>). If multiple prefixes exist, the shortest is used. If multiple
 prefixes with same length exist, the first in alphabetical order is used.
 
-=head2 qname( $uri [, $separator_char ] )
+=head2 qname( $uri )
 
-Returns a prefix and local name if the URI can be abbreviated with given
-namespaces.  The default separator char is a colon (C<:>).
+Returns a prefix and local name (as list in list context, concatenated by C<:>
+in scalar context) if the URI can be abbreviated with given namespaces.
 
 =encoding utf8
 

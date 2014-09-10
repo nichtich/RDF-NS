@@ -3,7 +3,7 @@ use warnings;
 package RDF::NS;
 #ABSTRACT: Just use popular RDF namespace prefixes from prefix.cc
 
-use Scalar::Util qw(blessed);
+use Scalar::Util qw(blessed reftype);
 use File::ShareDir;
 use Carp;
 use RDF::SN;
@@ -14,14 +14,23 @@ our $FORMATS = qr/ttl|n(otation)?3|sparql|xmlns|txt|beacon|json/;
 our $DATE_REGEXP = qr/^([0-9]{4})-?([0-9][0-9])-?([0-9][0-9])$/;
 
 sub new {
-    my $class = shift;
+    my $class = ref($_[0]) ? ref(shift) : shift;
     my $from  = @_ % 2 ? shift : 1;
     my %options = @_;
-
     my $at   = $options{at} || 'any';
     my $warn = $options{'warn'};
     $from = $options{from} if exists $options{from};
     $from = 'any' if !$from or $from eq 1;
+
+    if ((ref($from) || '') eq 'HASH') {
+        my $self = bless $from, $class;
+        foreach my $prefix (keys %$self) {
+            unless( $self->SET( $prefix => $self->{$prefix}, $warn ) ) {
+                delete $self->{$prefix};
+            }
+        }
+        return $self;
+    }
 
     if ( $from =~ $DATE_REGEXP ) {
         $at   = "$1$2$3";
@@ -37,8 +46,7 @@ sub new {
     croak "prefix file or date not found: $from"
         unless -f $from;
 
-    my $self = bless { }, (ref($class) || $class);
-
+    my $self = bless { }, $class;
     open (my $fh, '<', $from) or croak "failed to open $from";
     foreach (<$fh>) {
         chomp;
@@ -293,11 +301,11 @@ In most cases you only need the following lowercase methods.
 
 =head2 new ( [ $file_or_date ] [ %options ] )
 
-Create a new namespace mapping from a selected file or date. The special string
-C<"any"> or the value C<1> can be used to get the newest mapping, but you
-should better select a specific version, as mappings can change, violating
-backwards compatibility.  Supported options include C<warn> to enable warnings
-and C<at> to specify a date. 
+Create a new namespace mapping from a selected file, date, or hash reference.
+The special string C<"any"> or the value C<1> can be used to get the newest
+mapping, but you should better select a specific version, as mappings can
+change, violating backwards compatibility.  Supported options include C<warn>
+to enable warnings and C<at> to specify a date. 
 
 =head2 "I<prefix>"
 

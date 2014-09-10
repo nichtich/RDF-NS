@@ -20,14 +20,18 @@ is $rev->{$rdfs}, 'rdfs', 'reverse';
 is $rev->{$dc}, 'dc', 'reverse';
 is $rev->{'http://www.w3.org/2003/01/geo/wgs84_pos#'}, 'geo', 'reverse';
 
-is $rev->qname($ns->rdfs_type), 'rdfs:type', 'QNAME';
-is $rev->qname($ns->rdfs), 'rdfs:', 'QNAME';
+is $rev->qname($ns->rdfs_type), 'rdfs:type', 'qname (scalar context)';
+is $rev->qname($ns->rdfs), 'rdfs:', 'qname (scalar context)';
 
 $rev = RDF::SN->new('20140908');
-is $rev->qname($ns->dc11, '_'), 'dc_', 'QNAME';
-is $rev->qname_($ns->dc11), 'dc_', 'QNAME';
+is $rev->qname($ns->dc11), 'dc:', 'qname';
+is $rev->qname_($ns->dc11), 'dc_', 'qname_';
+
+is_deeply [ $rev->qname($ns->rdfs_type) ], [ 'rdfs','type' ], 'qname (scalar context)';
+is_deeply [ $rev->qname($ns->dc) ], [ 'dc', '' ], 'qname (list context)';
+is_deeply [ $rev->qname_($ns->dc) ], [ 'dc', '' ], 'qname_ (list context)';
 
 # check deterministic reverse lookup
-is($ns->REVERSE->qname('http://www.w3.org/2001/XMLSchema#'), 'xs:') for 1..10;
+is($ns->REVERSE->qname('http://www.w3.org/2001/XMLSchema#'), 'xs:', 'xs:') for 1..10;
 
 done_testing;
