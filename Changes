@@ -1,3 +1,30 @@
+20150725 2015-0725 (1643 prefixes)
+ - added:   affymetrix airs aktivesa amsl as bag beth bfo bgcat bgdbp bgdbr
+            bgn bibrm bmo bn bner bnf bridge bsym bv c9d caplibacl cart cbo
+            ccrel cff changeset chembl cl clirio company condition cpant
+            cpsv crmdig cwl cwork d0 d2d dannet daq date dbcat dcs decision
+            demlab deps dgfr dicera dm2e doas dpc ecc eccrev ecgl ecglview
+            eclap edgarcik emtr esaloj esapar esco escom esdir esequip
+            espresup essglobal estrf ev faldo faq fdbp figigii fluidops
+            galaksiya geojson gl glview gov gpml gtfs guo ha hasneto
+            holding hp ic imind insdc isocat itcat jerm kegg lawd lc lcdr
+            lden ldvm lemonuby lindt ljkl ll llm llo llont lmx lpeu ls lsd
+            lso lsqv luc lw mbgd mexalgo mexcore mexperf mexv mico minim
+            mmd mmf mtlo ncit nerd newsevents nex npdv oae oboinowl odbc
+            odo ofrd omnfed omnlife onc onto opengov oplcb oplcert oplecrm
+            oplmkt ops oss owsom oxi phdd piero pim pod quantity r4r ramon
+            rdabf rdabm rdacc rdacct rdaco rdact rdaemm rdafmn rdafnm
+            rdafnv rdafr rdafs rdaftn rdagd rdagrp rdagw rdami rdamt rdapmt
+            rdapo rdarm rdarr rdasco rdasoi rdatc rdatr rdaz religion
+            remetca rml rmo rofch rofem rofer rofet rofhf rofid rofim rofin
+            rofit rofrm rofrr rofrt rs rvdata sakthi san saws seas sh shoah
+            soc st sw swcomp tadirah td5 traffic ubiq um uneskos vacseen1
+            vag verb vidont vstoi wb webservice wn31 wno wro xcql xlime xrd
+            yo
+ - changed: biopax blt cex cv dblp factbook gml gnd lemon lgd nfo omn phil
+            rda ro scot sdo vgo xfn
+
+
 20140910 2014-0910 (1415 prefixes)
 
  - fixed deterministic short names

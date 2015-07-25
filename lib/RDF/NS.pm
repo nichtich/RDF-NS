@@ -242,8 +242,8 @@ sub UPDATE {
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20140910';              # check at compile time
-  my $ns = RDF::NS->new('20140910');   # check at runtime
+  use RDF::NS '20150725';              # check at compile time
+  my $ns = RDF::NS->new('20150725');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
