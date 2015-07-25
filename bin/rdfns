@@ -32,6 +32,9 @@ exit App::rdfns->new->run(@ARGV);
     # show version
     $ rdfns --version
 
+    # list available dates
+    $ rdfns --dates
+
 =head1 FORMATS
 
 =over

@@ -18,6 +18,7 @@ sub run {
 
     return $self->usage if !@ARGV or $ARGV[0] =~ /^(-[?h]|--help)$/;
     return $self->version if $ARGV[0] =~ /^(-v|--version)$/;
+    return $self->dates if $ARGV[0] eq '--dates';
 
     my $ns = RDF::NS->new;
     my $sn = $ns->REVERSE;
@@ -62,7 +63,7 @@ sub usage {
 USAGE: rdfns { [YYYYMMDD] ( <prefix[es]>[.format] | prefix:name | URL ) }+
 
   formats: txt, sparql, ttl, n3, xmlns, json, beacon, prefix
-  options: --help | --version
+  options: --help | --version | --dates
  
   examples:
     rdfns 20111102 foaf,owl.ttl
@@ -80,7 +81,22 @@ sub version {
     0;
 }
 
+sub dates {
+    my $fh = RDF::NS->new->DATA;
+    my $date = ''; 
+    foreach (<$fh>) {
+        chomp;
+        next if /^#/;
+        my @fields = split "\t", $_;
+        if ($fields[2] ne $date) {
+            say $date=$fields[2];
+        }
+    } 
+    0;
+}
+
 1;
+__END__
 
 =head1 SEE ALSO
 

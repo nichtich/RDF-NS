@@ -23,7 +23,7 @@
             yo
  - changed: biopax blt cex cv dblp factbook gml gnd lemon lgd nfo omn phil
             rda ro scot sdo vgo xfn
-
+ - list available dates with rdfns --dates (close #15)
 
 20140910 2014-0910 (1415 prefixes)
 

@@ -41,13 +41,8 @@ sub new {
         croak "RDF::NS expects 'any', '1' or a date as YYYY-MM-DD"; 
     }
 
-    $from = File::ShareDir::dist_file('RDF-NS', "prefix.cc" )
-        if $from eq 'any';
-    croak "prefix file or date not found: $from"
-        unless -f $from;
-
     my $self = bless { }, $class;
-    open (my $fh, '<', $from) or croak "failed to open $from";
+    my $fh = $self->DATA($from);
     foreach (<$fh>) {
         chomp;
         next if /^#/;
@@ -59,6 +54,16 @@ sub new {
     close($fh);
 
     $self;
+}
+
+sub DATA { # TODO: document
+    my ($self, $from) = @_;
+    $from = File::ShareDir::dist_file('RDF-NS', "prefix.cc" )
+        if ($from // 'any') eq 'any';
+    croak "prefix file or date not found: $from"
+        unless -f $from;
+    open (my $fh, '<', $from) or croak "failed to open $from";
+    $fh;
 }
 
 sub SET {
