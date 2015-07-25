@@ -1,7 +1,9 @@
+package RDF::SN;
+use v5.10;
 use strict;
 use warnings;
-package RDF::SN;
-#ABSTRACT: Short names for URIs with prefixes from prefix.cc
+
+our $VERSION = '20150725';
 
 use RDF::NS;
 use Scalar::Util qw(blessed);
@@ -59,10 +61,17 @@ sub qname_ {
     }
 }
 
+1;
+__END__
+
+=head1 NAME
+
+RDF::SN - Short names for URIs with prefixes from prefix.cc
+
 =head1 SYNOPSIS
 
   use RDF::SN;
-  $abbrev = RDF::SN->new('20140908');
+  $abbrev = RDF::SN->new('20150725');
   $abbrev->qname('http://www.w3.org/2000/01/rdf-schema#type'); # rdfs:type
 
 =head1 DESCRIPTION
@@ -83,6 +92,11 @@ in scalar context) if the URI can be abbreviated with given namespaces.
 
 =encoding utf8
 
-=cut
+=head1 COPYRIGHT AND LICENSE
+ 
+This software is copyright (c) 2013- by Jakob Voß.
+ 
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
-1;
+=cut

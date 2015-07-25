@@ -60,7 +60,18 @@ push @log, prefix_list("added:  ",$diff->{create}) if @{$diff->{create}};
 push @log, prefix_list("removed:",$diff->{delete}) if @{$diff->{delete}};
 push @log, prefix_list("changed:",$diff->{update}) if @{$diff->{update}};
 
-foreach my $file (qw(dist.ini lib/RDF/NS.pm lib/RDF/NS/Trine.pm lib/RDF/NS/URIS.pm README.md)) {
+
+my @files = qw(
+lib/App/rdfns.pm
+lib/RDF/NS.pm
+lib/RDF/NS/Trine.pm
+lib/RDF/NS/URIS.pm
+lib/RDF/SN.pm
+README.md
+dist.ini
+);
+
+foreach my $file (@files) {
     print "$cur_version => $new_version in $file\n";
     local ($^I,@ARGV)=('.bak',$file);
     while(<>) {

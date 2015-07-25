@@ -1,9 +1,10 @@
+package RDF::NS::Trine;
+use v5.10;
 use strict;
 use warnings;
-package RDF::NS::Trine;
-#ABSTRACT: Popular RDF namespace prefixes from prefix.cc as RDF::Trine nodes
 
-use v5.10;
+our $VERSION = '20150725';
+
 use RDF::Trine::Node::Resource;
 use RDF::Trine::Node::Blank;
 
@@ -19,6 +20,11 @@ sub BLANK {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+RDF::NS::Trine - Popular RDF namespace prefixes from prefix.cc as RDF::Trine nodes
 
 =head1 SYNOPSIS
 
@@ -49,5 +55,12 @@ installed automatically together with L<RDF::NS>!
 Returns a new L<RDF::Trine::Node::Blank>.
 
 =encoding utf8
+
+=head1 COPYRIGHT AND LICENSE
+ 
+This software is copyright (c) 2013- by Jakob Voß.
+ 
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut

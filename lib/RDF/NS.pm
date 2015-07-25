@@ -1,7 +1,9 @@
+package RDF::NS;
+use v5.10;
 use strict;
 use warnings;
-package RDF::NS;
-#ABSTRACT: Just use popular RDF namespace prefixes from prefix.cc
+
+our $VERSION = '20150725';
 
 use Scalar::Util qw(blessed reftype);
 use File::ShareDir;
@@ -242,8 +244,22 @@ sub UPDATE {
     };
 }
 
-
 1;
+__END__
+
+=head1 NAME
+
+RDF::NS - Just use popular RDF namespace prefixes from prefix.cc
+
+=begin markdown
+
+# STATUS
+
+[![Build Status](https://travis-ci.org/nichtich/RDF-NS.png)](https://travis-ci.org/nichtich/RDF-NS)
+[![Coverage Status](https://coveralls.io/repos/nichtich/RDF-NS/badge.svg?branch=master)](https://coveralls.io/r/nichtich/RDF-NS?branch=master)
+[![Kwalitee Score](http://cpants.cpanauthors.org/dist/RDF-NS.png)](http://cpants.cpanauthors.org/dist/RDF-NS)
+
+=end markdown
 
 =head1 SYNOPSIS
 
@@ -410,8 +426,13 @@ L<RDF::Trine::Namespace>, L<RDF::Trine::NamespaceMap>, L<URI::NamespaceMap>,
 L<RDF::Prefixes>, L<RDF::Simple::NS>, L<RDF::RDFa::Parser::Profile::PrefixCC>,
 L<Class::RDF::NS>, L<XML::Namespace>, L<XML::CommonNS> etc.
 
-=for HTML <a href="https://travis-ci.org/nichtich/RDF-NS"><img src="https://travis-ci.org/nichtich/RDF-NS.svg?branch=master"></a>
+=encoding utf8
 
-=for HTML <a href="https://coveralls.io/r/nichtich/RDF-NS?branch=master"><img src="https://img.shields.io/coveralls/nichtich/RDF-NS.svg"></a>
+=head1 COPYRIGHT AND LICENSE
+ 
+This software is copyright (c) 2013- by Jakob Voß.
+ 
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
