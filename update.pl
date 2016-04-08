@@ -13,9 +13,9 @@ my $dirty = `git status --porcelain`;
 die "git repository is dirty\n" if $dirty;
 
 # get current version distribution
-my $dist = do { local( @ARGV, $/ ) = 'dist.ini'; <> };
-my $cur_version = $1 if $dist =~ /^\s*version\s*=\s*([^\s]+)/m;
-$cur_version or die 'current version not found in dist.ini';
+my $dist = do { local( @ARGV, $/ ) = 'lib/RDF/NS.pm'; <> };
+my $cur_version = $1 if $dist =~ /^our \$VERSION\s*=\s*'([^']+)'/m;
+$cur_version or die 'current version not found in lib/RDF/NS.pm';
 
 # get current prefixes
 my $cur = RDF::NS->LOAD( "share/prefix.cc", warn => 1 );
@@ -24,7 +24,7 @@ die "share/prefix.cc is empty" unless %$cur;
 # get new current datestamp
 my @t = gmtime;
 my $new_version = sprintf '%4d%02d%02d', $t[5]+1900, $t[4]+1, $t[3];
-my $new_date    = sprintf '%4d-%02d%-02d', $t[5]+1900, $t[4]+1, $t[3];
+my $new_date    = sprintf '%4d-%02d%-%02d', $t[5]+1900, $t[4]+1, $t[3];
 die "$new_version is not new" if $new_version eq $cur_version;
 
 # download new prefixes
@@ -49,7 +49,7 @@ foreach my $change (qw(create delete update)) {
     }
 }
 
-my (@log) = "$new_version $new_date (" . $new->COUNT . " prefixes)"; 
+my (@log) = ('{{$NEXT}}', ' - ' . $new->COUNT . " prefixes");
 
 sub prefix_list {
     my ($label, $list) = @_;
@@ -68,7 +68,6 @@ lib/RDF/NS/Trine.pm
 lib/RDF/NS/URIS.pm
 lib/RDF/SN.pm
 README.md
-dist.ini
 );
 
 foreach my $file (@files) {
