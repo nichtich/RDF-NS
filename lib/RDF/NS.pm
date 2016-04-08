@@ -3,7 +3,7 @@ use v5.10;
 use strict;
 use warnings;
 
-our $VERSION = '20150725';
+our $VERSION = '20160408';
 
 use Scalar::Util qw(blessed reftype);
 use File::ShareDir;
@@ -263,8 +263,8 @@ RDF::NS - Just use popular RDF namespace prefixes from prefix.cc
 
 =head1 SYNOPSIS
 
-  use RDF::NS '20150725';              # check at compile time
-  my $ns = RDF::NS->new('20150725');   # check at runtime
+  use RDF::NS '20160408';              # check at compile time
+  my $ns = RDF::NS->new('20160408');   # check at runtime
 
   $ns->foaf;               # http://xmlns.com/foaf/0.1/
   $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person

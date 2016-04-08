@@ -1,3 +1,25 @@
+{{$NEXT}}
+ - 1791 prefixes
+ - added:   ali aozora auto b3kat csdbp csvw ctxdesc cue data datacite
+            dataid dcodt dcosample dio door dpla dqc dqv dsfv dsv eccauth
+            eccdi ecowlim edac eem efd eli elod esair estatgph ethc
+            eurostat fe fire fnabox fntbox foo frame frappe gci gist glycan
+            gns gont goog gs1 hello hto ianarel ideotalex iiif incident
+            input ipo isbdu iso37120 jolux juso kbv km4c lcsh lgdm lgdt
+            lheo lslife lsmap lsweb lswmo lswpm lu maeco maet master1 moo
+            mv ncicp nlon ns1 odw ogc oml open311 opllog oplweb orges
+            orgesv2 orth ost ou output owl2xml pbody pcit pid pmhb pp proms
+            provoc psv puml pv qms regorg rfd rgml rimmf rm rofsf rofsm
+            rpath rut samfl saref scco scholl scor sct sdshare sdt si smxm
+            snac sor srx step teamwork text theme tix tp type uby uom
+            valueflows vf voc vocnet volt vort vsearch wail wde wdt
+            wikibase wimpo wsdl xapi yd
+ - changed: bd bgcat bif bsb cordis dbpediaowl dpc ex fn go hasneto ic lgd
+            media mm mu pay rdacct sem vstoi xkos
+
+ - Take version number from lib/RDF/NS.pm
+ - Require Perl >= 5.12
+
 20150725 2015-0725 (1643 prefixes)
  - added:   affymetrix airs aktivesa amsl as bag beth bfo bgcat bgdbp bgdbr
             bgn bibrm bmo bn bner bnf bridge bsym bv c9d caplibacl cart cbo
