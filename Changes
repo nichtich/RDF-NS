@@ -1,4 +1,8 @@
 {{$NEXT}}
+ - 1793 prefixes
+ - added:   dwciri sdterms
+
+ - move bin directory to script (#18)
 
 20160408  2016-04-08 20:54:28 CEST
  - 1791 prefixes

@@ -1902,3 +1902,5 @@ wsdl	http://www.w3.org/ns/wsdl-rdf#	20160408
 xapi	http://purl.org/xapi/ontology#	20160408
 xkos	http://rdf-vocabulary.ddialliance.org/xkos#	20160408
 yd	https://yodata.io/	20160408
+dwciri	http://rs.tdwg.org/dwc/iri/	20160409
+sdterms	http://statisticaldata.linkedwidgets.org/terms/	20160409

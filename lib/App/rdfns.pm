@@ -5,7 +5,7 @@ use warnings;
 
 use RDF::NS;
 
-our $VERSION = '20160408';
+our $VERSION = '20160409';
 
 sub new {
     bless {}, shift;
