@@ -10,8 +10,8 @@ RDF::NS - Just use popular RDF namespace prefixes from prefix.cc
 
 # SYNOPSIS
 
-    use RDF::NS '20160409';              # check at compile time
-    my $ns = RDF::NS->new('20160409');   # check at runtime
+    use RDF::NS '20170111';              # check at compile time
+    my $ns = RDF::NS->new('20170111');   # check at runtime
 
     $ns->foaf;               # http://xmlns.com/foaf/0.1/
     $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person

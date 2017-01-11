@@ -10,7 +10,7 @@
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
-      "version" : "2"
+      "version" : 2
    },
    "name" : "RDF-NS",
    "no_index" : {
@@ -54,7 +54,7 @@
          "web" : "https://github.com/nichtich/RDF-NS"
       }
    },
-   "version" : "20160409",
+   "version" : "20170111",
    "x_contributors" : [
       "Andreas Koenig <andk@cpan.org>",
       "Jakob Voss <jakob@nichtich.de>",

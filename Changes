@@ -1,4 +1,22 @@
 {{$NEXT}}
+ - 1922 prefixes
+ - added:   apf art asawoo bb bblfish biml bioc cdt clinic cpack crime
+            crowd dash datex dbfo dcap dcatapit dcodata dpn driver duv eame
+            eccpubsub ecoll efrbroo ensembl eol esproc fno fo frgeo html
+            iana ifc ioto ipsv isidore ispra jpost kees latitude ldq ldqm
+            leak leaks literal llr lsq lyon markus mdi meat merge meshv mls
+            mmm mmoon mod ncbigene ndnp neotec neotecbib obeu ondc ontolex
+            ontology ontop or organ pcdm pdf planet pm pmd pmo pmofn pmonb
+            pmopb pmovn ppr prohow rdaad rdaar rdabs rdacarx rdacdt rdacpc
+            rdaft rdagen rdaill rdalay rdapf rdapm rdaspc rdaterm rdavf
+            rdfp rdfsharp ruian sdm sdmxc sdmxcode sdmxm semiot sg sgfn sgg
+            sgiter soch solid sorg spv studiop sx system tarql tgm tissue
+            undata vam vogd voidex vplan wab wdv webac ws year yso
+ - changed: cdm content dbpediaowl dul fn gen ic jolux ludo media mm nuts
+            ogc res role san seas units verb wikipedia wp
+
+
+{{$NEXT}}
 
 20160409  2016-04-09 14:03:22 CEST
  - 1793 prefixes
