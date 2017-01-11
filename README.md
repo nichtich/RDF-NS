@@ -126,13 +126,13 @@ Returns a list of BEACON format prefix definitions (not including prefixes).
 
 Get a prefix of a namespace URI, if it is defined. This method does a reverse
 lookup which is less performant than the other direction. If multiple prefixes
-are defined, it is not determinstic which one is returned! If you need to call
-this method frequently and with deterministic response, better create a reverse
-hash (method REVERSE).
+are defined, the first in sorted order is returned. If you need to call this
+method frequently and with deterministic response, better create a reverse hash
+(method REVERSE).
 
 ## PREFIXES ( $uri )
 
-Get all known prefixes of a namespace URI.
+Get all known prefixes of a namespace URI in sorted order.
 
 ## REVERSE
 
