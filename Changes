@@ -1,4 +1,12 @@
 {{$NEXT}}
+ - 2086 prefixes
+ - added:   besluit bgt geo7 shui
+
+ - Merge pull request #21 from kjetilk/feature-band-example
+ - adjust the counts
+ - Do not load namespaces with example
+
+{{$NEXT}}
 
 20180213  2018-02-13 10:16:58 CET
  - 2082 prefixes
