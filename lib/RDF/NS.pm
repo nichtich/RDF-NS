@@ -49,6 +49,7 @@ sub new {
         chomp;
         next if /^#/;
         my ($prefix, $namespace, $date) = split "\t", $_;
+		  next if ($namespace =~ m|^https?://example\.\w+?/|);
         last if $date and $at ne 'any' and $date > $at;
 
         $self->SET( $prefix => $namespace, $warn );
