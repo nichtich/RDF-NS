@@ -1,4 +1,15 @@
 {{$NEXT}}
+ - 2145 prefixes
+ - added:   activity adr antenne atlasterms az bioentity cocoon crml
+            cubeont cwlprov da dao dcx dead dnbt dossier ecore faostat
+            foaffff frbroo gbol gdpr goaf grel gt ids imas jpo kmgeo ldt
+            led legal lido mandaat mem mml mmo mobivoc mydb nosql number
+            numbers physics plg ppn r3d seo seokoeln sfd swo swrc2 sylld
+            tikag timex uc vartrans vss vsso waarde
+ - changed: cco cpm doi edam lime lindt opm parl sparql ssn video wordnet
+
+
+{{$NEXT}}
 
 20180227  2018-02-27 20:35:38 CET
  - 2086 prefixes

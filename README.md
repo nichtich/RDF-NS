@@ -10,8 +10,8 @@ RDF::NS - Just use popular RDF namespace prefixes from prefix.cc
 
 # SYNOPSIS
 
-    use RDF::NS '20180227';              # check at compile time
-    my $ns = RDF::NS->new('20180227');   # check at runtime
+    use RDF::NS '20181102';              # check at compile time
+    my $ns = RDF::NS->new('20181102');   # check at runtime
 
     $ns->foaf;               # http://xmlns.com/foaf/0.1/
     $ns->foaf_Person;        # http://xmlns.com/foaf/0.1/Person
@@ -85,7 +85,7 @@ instance `$ns->foaf` returns `http://xmlns.com/foaf/0.1/`.
 Returns the namespace plus local name, if namespace prefix is defined. For
 instance `$ns->foaf_Person` returns `http://xmlns.com/foaf/0.1/Person`.
 
-## uri ( $short | "<$URI>" )
+## uri ( $short | "&lt;$URI>" )
 
 Expand a prefixed URI, such as `foaf:Person` or `foaf_Person`. Alternatively 
 you can expand prefixed URIs with method calls, such as `$ns->foaf_Person`.
