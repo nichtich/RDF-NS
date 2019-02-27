@@ -1,4 +1,6 @@
 {{$NEXT}}
+  - removed: alice
+  - Exclude example-domains only on update
 
 20181102  2018-11-02 20:23:05 CET
  - 2145 prefixes

@@ -2058,7 +2058,6 @@ add	http://www.datatourisme.fr/ontology/core/1.0#	20180213
 ago	http://awesemantic-geo.link/ontology/	20180213
 agr	http://promsns.org/def/agr#	20180213
 alethio	http://aleth.io/	20180213
-alice	http://example.org/	20180213
 allot	https://w3id.org/akn/ontology/allot#	20180213
 aml	https://w3id.org/i40/aml#	20180213
 amt	http://academic-meta-tool.xyz/vocab#	20180213
