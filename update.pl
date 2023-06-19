@@ -8,12 +8,18 @@ use File::Temp;
 use Text::Wrap;
 $Text::Wrap::unexpand = 0;    # don't insert tabs
 
+my $source = $ARGV[0] || do {
+    print "Usage: $0 http://prefix.cc/popular/all.file.txt  # from url\n";
+    print "Usage: $0 all.txt                                #  from file\n";
+    exit;
+};
+
 # make sure, git repository is clean
 my $dirty = `git status --porcelain`;
 die "git repository is dirty\n" if $dirty;
 
 # get current version distribution
-my $dist = do { local ( @ARGV, $/ ) = 'lib/RDF/NS.pm'; <> };
+my $dist        = do { local ( @ARGV, $/ ) = 'lib/RDF/NS.pm'; <> };
 my $cur_version = $1 if $dist =~ /^our \$VERSION\s*=\s*'([^']+)'/m;
 $cur_version or die 'current version not found in lib/RDF/NS.pm';
 
@@ -23,15 +29,16 @@ die "share/prefix.cc is empty" unless %$cur;
 
 # get new current datestamp
 my @t           = gmtime;
-my $new_version = sprintf '%4d%02d%02d', $t[5] + 1900, $t[4] + 1, $t[3];
+my $new_version = sprintf '%4d%02d%02d',    $t[5] + 1900, $t[4] + 1, $t[3];
 my $new_date    = sprintf '%4d-%02d%-%02d', $t[5] + 1900, $t[4] + 1, $t[3];
 die "$new_version is not new" if $new_version eq $cur_version;
 
-# download new prefixes
-my $tmp = File::Temp->new->filename;
-my $url = "http://prefix.cc/popular/all.file.txt";
-mirror( $url, $tmp ) or die "Failed to load $url";
-my $new = RDF::NS->LOAD( $tmp, warn => 1 );
+if ( $source =~ /^https?:/ ) {
+    my $url = $source;
+    $source = File::Temp->new->filename;
+    mirror( $url, $source ) or die "Failed to load $url";
+}
+my $new = RDF::NS->LOAD( $source, warn => 1 );
 
 # lock all prefixes pointing to example.* TLD URLs
 for ( grep { $new->{$_} =~ qr{^https?://example.\w} } keys %$new ) {

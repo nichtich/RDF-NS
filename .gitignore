@@ -2,3 +2,4 @@
 *.bak
 RDF-NS*
 .build
+*.txt
